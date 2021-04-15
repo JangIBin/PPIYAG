@@ -1,0 +1,115 @@
+body {
+  width: 100%;
+  height: 100vh;
+  background: #f2d649;
+}
+header {
+  position: relative;
+  background: #fff;
+  width: 100%;
+  display: block;
+  height: 68px;
+  z-index: 100;
+  box-shadow: 0 -3px 5px 2px rgba(0, 0, 0, 0.15); 
+}
+.top {
+  position: relative;
+  overflow: hidden;
+  z-index: 100;
+  padding: 28px 14px 8px 14px;
+}
+.back {
+  float: right;
+  width: 22px;
+  height: 22px;
+  margin: 3px 0;
+}
+.back a {
+  display: block; 
+  width: 22px;
+  height: 22px;
+  overflow: hidden;
+  text-align: center;
+}
+.back a img {
+  width: 22px;
+  height: 22px;
+}
+
+
+.content, .content_inner {
+  display: block;
+}
+.content_inner {
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 -3px 5px 2px rgba(0, 0, 0, 0.15); 
+}
+strong {
+  display: block;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.address, .phone {
+  line-height: 1.6em;
+}
+h4 {
+  font-size: 16px;
+  float: left;
+  color: #767676;
+  overflow: hidden;
+}
+.address_inner, .phone_inner {
+  margin-left: 45px;
+}
+.content_inner button {
+  margin: 10px auto 0;
+  background: #F2D649;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 0;
+  display: block;
+  width: 100%;
+  font-size: 16px;
+}
+
+/* .block {
+  width: 100%;
+  height: 10px;
+  background: #f1f1f1;
+} */
+
+.time, .etc {
+  display: block;
+  background: #fff;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 12px 10px;
+}
+.time h2 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.day, .weekend {
+  line-height: 1.6em;
+}
+.day h4, .weekend h4 {
+  margin-right: 10px;
+}
+
+.notice h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+.notice span {
+  font-size: 12px;
+  color: #767676;
+  display: block;
+  line-height: 1.5em;
+}
+.notice span:last-child {
+  margin-top: 7px;
+}
