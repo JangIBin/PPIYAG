@@ -1,27 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, Image, StyleSheet, Modal, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, Modal, TouchableOpacity } from 'react-native';
+import MediMoreInfo from './MediMoreInfo';
+import { useNavigation } from '@react-navigation/native';
 import exit from "../../asset/exit.png";
 
 const MediModal = ({showModal, toggleModal, sendModal}) => {
+  const navigation = useNavigation(); 
   console.log(showModal);
   return (
     <View style={styles.container}>
-        <Modal visible={showModal} transparent={true} onPress={() => console.log('ondroppress')}>
-          <View style={styles.modal}>
-            <View style={styles.align}>
-              <View style={styles.view}>
+        <Modal visible={showModal} transparent={true}>
+          
+            <View style={styles.modal}>
+            <TouchableOpacity onPress={()=> {navigation.navigate('MediMoreInfo', { mediTitle:sendModal })}}>
+              <View style={styles.align}>
+                <View style={styles.view}>
                   <Text style={styles.modaltitle}>{sendModal.INST_NM}</Text>
                   <Text style={styles.modaltext}>{sendModal.REFINE_ROADNM_ADDR}</Text>
                   <Text style={styles.modaltext}>{sendModal.REPRSNT_TELNO}</Text>
+                </View>
+                <View>
+                  <TouchableOpacity  onPress={() => toggleModal(!showModal)}>
+                    <Image style={styles.exit} source={exit} />
+                  </TouchableOpacity>
+                </View>
               </View>
-              <View>
-                <TouchableOpacity  onPress={() => toggleModal(!showModal)}>
-                  <Image style={styles.exit} source={exit} />
-                </TouchableOpacity>
-              </View>
+              </TouchableOpacity>
             </View>
-            
-          </View>
+          
         </Modal>
     </View>
   )
@@ -74,4 +80,5 @@ const styles = StyleSheet.create({
 });
 
 export default MediModal;
+
 

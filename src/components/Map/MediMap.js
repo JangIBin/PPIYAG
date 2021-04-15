@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"; 
-import { PermissionsAndroid, Platform, View, Text, StyleSheet, TouchableOpacity } from "react-native"; 
-import MapView, { PROVIDER_GOOGLE, Marker, google } from "react-native-maps"; 
+import { PermissionsAndroid, Platform, View, Text, StyleSheet } from "react-native"; 
+import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps"; 
 import Geolocation from 'react-native-geolocation-service';
 import axios from "axios";
 import MediModal from "./MediModal"
