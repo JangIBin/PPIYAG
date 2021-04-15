@@ -12,7 +12,7 @@ const MediModal = ({showModal, toggleModal, sendModal}) => {
         <Modal visible={showModal} transparent={true}>
           
             <View style={styles.modal}>
-            <TouchableOpacity onPress={()=> {navigation.navigate('MediMoreInfo', { mediTitle:sendModal })}}>
+            <TouchableOpacity onPress={()=> {navigation.navigate( 'MediMoreInfo', { mediMore: {sendModal}});}}>
               <View style={styles.align}>
                 <View style={styles.view}>
                   <Text style={styles.modaltitle}>{sendModal.INST_NM}</Text>

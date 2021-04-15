@@ -75,6 +75,7 @@ const MapEx = () => {
                 onRegionChangeComplete={(location) => setLocation(location)}
                 
             >   
+                <Marker coordinate = {{latitude: 37.4040567, longitude: 126.9306283}}></Marker>
                 {pharmacys.map((pharmacy, index) => (
                     <Marker
                         key={index}
