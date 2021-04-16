@@ -9,26 +9,24 @@ const MediModal = ({showModal, toggleModal, sendModal}) => {
   console.log(showModal);
   return (
     <View style={styles.container}>
-        <Modal visible={showModal} transparent={true}>
-          
-            <View style={styles.modal}>
-            <TouchableOpacity onPress={()=> {navigation.navigate( 'MediMoreInfo', { mediMore: {sendModal}});}}>
-              <View style={styles.align}>
-                <View style={styles.view}>
-                  <Text style={styles.modaltitle}>{sendModal.INST_NM}</Text>
-                  <Text style={styles.modaltext}>{sendModal.REFINE_ROADNM_ADDR}</Text>
-                  <Text style={styles.modaltext}>{sendModal.REPRSNT_TELNO}</Text>
-                </View>
-                <View>
-                  <TouchableOpacity  onPress={() => toggleModal(!showModal)}>
-                    <Image style={styles.exit} source={exit} />
-                  </TouchableOpacity>
-                </View>
+      <Modal visible={showModal} transparent={true}>
+        <View style={styles.modal}>
+          <TouchableOpacity onPress={()=> {navigation.navigate( 'MediMoreInfo', { mediMore: {sendModal}}); toggleModal(!showModal)}}>
+            <View style={styles.align}>
+              <View>
+                <Text style={styles.modaltitle}>{sendModal.INST_NM}</Text>
+                <Text style={styles.modaltext}>{sendModal.REFINE_ROADNM_ADDR}</Text>
+                <Text style={styles.modaltext}>{sendModal.REPRSNT_TELNO}</Text>
               </View>
-              </TouchableOpacity>
+              <View>
+                <TouchableOpacity onPress={() => toggleModal(!showModal)}>
+                  <Image style={styles.exit} source={exit} />
+                </TouchableOpacity>
+              </View>
             </View>
-          
-        </Modal>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   )
 };
@@ -40,10 +38,10 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: '#ffffff',
     width: '100%',
-    height: 155,
+    height: 170,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    marginTop: 580,
+    marginTop: 640,
     shadowColor: "#000000",
     shadowOffset: {
       width: 0,
@@ -61,17 +59,16 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginRight: 20,
   },
-  view: {
-  },
   modaltitle: {
     fontSize: 23,
     fontWeight: "bold",
     color: '#000000',
+    marginBottom: 10,
   },
   modaltext: {
     fontSize: 15,
     color: '#333',
-    marginTop: 15,
+    marginTop: 13,
   },
   exit: {
     width: 20,

@@ -5,6 +5,7 @@ import Geolocation from 'react-native-geolocation-service';
 import axios from "axios";
 import MediModal from "./MediModal"
 import medipic from "../../asset/marker.png";
+import markerHere from '../../asset/marker_here.png'
 
 async function requestPermission(){
     try{
@@ -73,20 +74,18 @@ const MapEx = () => {
                     longitudeDelta: 0.005,
                 }}
                 onRegionChangeComplete={(location) => setLocation(location)}
-                
             >   
-                <Marker coordinate = {{latitude: 37.4040567, longitude: 126.9306283}}></Marker>
+                <Marker coordinate = {{latitude: 37.4040567, longitude: 126.9306283}} image={markerHere}></Marker>
                 {pharmacys.map((pharmacy, index) => (
                     <Marker
                         key={index}
+                        title={pharmacy.INST_NM}
                         coordinate = {{latitude: Number(pharmacy.REFINE_WGS84_LAT), longitude: Number(pharmacy.REFINE_WGS84_LOGT)}}
                         image={medipic}
                         onPress={() => {
                             console.log('marker'); 
-                            //console.log(pharmacy);
                             setModalVisible(true);
                             setSendModal(pharmacy);
-                            //console.log(sendmodal);
                         }}
                     >
                         <Text>Medi</Text>
