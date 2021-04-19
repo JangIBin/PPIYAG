@@ -135,3 +135,20 @@ button span {
   text-overflow: ellipsis;
   letter-spacing: -.25px;
 }
+.fav {
+  cursor: pointer;
+}
+.fav::before {
+  content : '\f006';
+  font-family: fontawesome;
+  color: #bbb;
+  position: absolute;
+  font-size: 20px;
+  right: 10px;
+  top: 10px;
+}
+.fav.active::before{
+  content:'\f005';
+  font-family: fontawesome;
+  color: #F2D649;
+}

@@ -7,7 +7,7 @@
   <title>삐약::약국정보</title>
   <link rel="stylesheet" href="css/default.css">
   <link rel="stylesheet" href="css/medi_search.css">
-  <!-- <script async defer src="https://maps.googleleapis.com/maps/api/js?key=AIzaSyCA_TeVgbnCj9by77y9-NGRdG-ipnluvGM&callback=initMap"></script> -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
   <header>
@@ -46,6 +46,7 @@
                   2. 다음 질환에도 사용할 수 있다.
                   치통, 관절통, 류마티양 동통(통증)</span>
               </div>
+              <span class="fav"></span>
             </div>
           </a>
         </li>
@@ -69,6 +70,7 @@
                   
                   5. 염증, 통증 및 발열을 수반하는 감염증의 치료보조</span>
               </div>
+              <span class="fav"></span>
             </div>
           </a>
         </li>
@@ -87,6 +89,7 @@
                   2. 다음 질환에도 사용할 수 있다.
                   치통, 관절통, 류마티양 동통(통증)</span>
               </div>
+              <span class="fav"></span>
             </div>
             <span></span>
           </a>
@@ -104,6 +107,7 @@
                 <span>1. 기외수축(상실성, 심실성), 발작성빈맥의 예방, 빈맥성심방세동, 발작성심방세동, 동빈맥, 협심증, 고혈압, 비후성대동맥판하협착증, 크롬친화세포종
                   2. 갑상샘중독증의 보조요법</span>
               </div>
+              <span class="fav"></span>
             </div>
           </a>
         </li>
@@ -122,9 +126,9 @@
                   2. 다음 질환에도 사용할 수 있다.
                   - 두통, 편두통, 치통, 근육통, 신경통, 강직성 척추염, 급성통풍, 건선(마른비닐증)성 관절염, 연조직손상(염좌(삠), 좌상(타박상)), 비관절 류마티스질환(건염(힘줄염), 건초염(힘줄윤활막염), 활액(윤활)낭염)
                   [네이버 지식백과] 이지엔6애니연질캡슐 [EZN6any Soft Cap.] (의약품 사전)
-                  
                   </span>
               </div>
+              <span class="fav"></span>
             </div>
           </a>
         </li>
@@ -142,6 +146,7 @@
 
                   2. 신경계 질환에 의한 경직성 마비 : 뇌혈관장애, 경직성 척수마비, 경부척추증, 수술후 후유증(뇌·척수종양 포함), 외상후유증(척수손상, 두부외상), 근위축성 축색경화증, 뇌성마비, 척수소뇌변성증, 척수혈관장애, 아급성 척수시신경병변, 기타의 뇌척수질환</span>
               </div>
+              <span class="fav"></span>
             </div>
           </a>
         </li>
@@ -164,11 +169,19 @@
                   4. 공황장애
                   </span>
               </div>
+              <span class="fav"></span>
             </div>
           </a>
         </li>
       </ul>
     </div>
   </div>
+
+  <!-- 즐겨찾기 -->
+  <script>
+    $('.fav').click(function(){
+        $(this).toggleClass('active')
+    })
+</script>
 </body>
 </html>
