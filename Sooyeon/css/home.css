@@ -53,6 +53,9 @@ header {
   height: 40%;
   margin-bottom: 15px;
 }
+/* .search a {
+  text-decoration: none;
+} */
 .location, .alarm{
   display: inline-block;
   width: 48%;
