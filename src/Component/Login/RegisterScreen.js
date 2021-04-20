@@ -53,7 +53,6 @@ const RegisterScreen = (props) => {
     var dataToSend = {
       name: userName,
       email: userEmail,
-      address: userAddress,
       password: userPassword,
     };
     var formBody = [];
@@ -126,11 +125,11 @@ const RegisterScreen = (props) => {
         <View style={{alignItems: 'center'}}>
         </View>
         <KeyboardAvoidingView enabled>
-          <View>
-            <Text>회원가입</Text>
+          <View style={styles.registerView}>
+            <Text style={styles.registerText}>회원가입</Text>
           </View>
-          <View>
-            <Text>계정 정보를 입력하세요</Text>
+          <View style={styles.subTitleView}>
+            <Text style={styles.subTitleText}>계정 정보를 입력하세요</Text>
           </View>
           <View style={styles.SectionStyle}>
             <TextInput
@@ -210,7 +209,7 @@ const RegisterScreen = (props) => {
             style={styles.buttonStyle}
             activeOpacity={0.5}
             onPress={handleSubmitButton}>
-            <Text style={styles.buttonTextStyle}>REGISTER</Text>
+            <Text style={styles.buttonTextStyle}>회원가입</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
       </ScrollView>
@@ -228,6 +227,25 @@ const styles = StyleSheet.create({
     marginRight: 35,
     margin: 10,
   },
+  registerView: {
+    alignItems: 'center',
+    width: "100%",
+    paddingTop: 60,
+  },
+  registerText: {
+    fontFamily: "Jua-Regular",
+    color: "#34495E",
+    fontWeight: "300",
+    fontSize: 36,
+  },
+  subTitleView: {
+    alignItems: 'center',
+    padding: 30,
+  },
+  subTitleText: {
+    fontWeight: "400",
+    fontSize: 20,
+  },
   buttonStyle: {
     backgroundColor: '#F2D649',
     borderWidth: 0,
@@ -242,7 +260,7 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   buttonTextStyle: {
-    color: '#FFFFFF',
+    color: '#000000',
     paddingVertical: 10,
     fontSize: 16,
   },
