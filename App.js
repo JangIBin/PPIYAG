@@ -13,6 +13,11 @@ import LoginScreen from './src/Component/Login/LoginScreen';
 import RegisterScreen from './src/Component/Login/RegisterScreen';
 import DrawerNavigationRoutes from './src/Component/Login/DrawerNavigatorRoutes';
 
+//MediMap
+import MediMap from './src/Component/Map/MediMap';
+import MediModal from './src/Component/Map/MediModal';
+import MediMoreInfo from './src/Component/Map/MediMoreInfo';
+
 const Stack = createStackNavigator();
 
 const Auth = () => {
@@ -66,7 +71,11 @@ const App = () => {
           // Hiding header for Navigation Drawer
           options={{headerShown: false}}
         />
+        <Stack.Screen name="MediMap" component={MediMap} />
+        <Stack.Screen name="MediModal" component={MediModal} />
+        <Stack.Screen name="MediMoreInfo" component={MediMoreInfo} />
       </Stack.Navigator>
+        
     </NavigationContainer>
   );
 };

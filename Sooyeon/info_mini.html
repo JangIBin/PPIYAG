@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>삐약::약국정보</title>
+  <link rel="stylesheet" href="css/default.css">
+  <link rel="stylesheet" href="css/info_mini.css">
+  <script async defer src="https://maps.googleleapis.com/maps/api/js?key=AIzaSyCA_TeVgbnCj9by77y9-NGRdG-ipnluvGM&callback=initMap"></script>
+</head>
+<body>
+  <div class="back">
+    <a href="home.html">
+      <img src="img/iconfinder_left-arrow-back_2931162.png" alt="">
+    </a>
+  </div>
+  <div class="popup">
+    <div class="popup_wrap">
+      <div class="infoBox">
+        <h2>약국 이름</h2>
+        <p>경기 안양시 동안구 임곡로 29(비산동)</p>
+        <p>031-467-4700</p>
+      </div>
+      <button class="close"><img src="img/iconfinder_exit-delete-remove-close-x_2931151.png" alt=""></button>
+      </div>
+    </div>
+    <div>
+      <div class="map" id="map" style="width: 100%; height: 100vh; z-index: -1;"></div>
+    </div>
+  </div>
+</body>
+
+
+<!-- 구글맵 -->
+<script>
+  function initMap() {
+    const where =  {lat: -34.397, lng: 150.644};
+    const map = new google.maps.Map(document.getElementById('map'), {
+      center: where, zoom: 8
+    });
+
+    const image = './img/marker.png';
+    const marker = new google.maps.Marker({
+      position: {lat: 48.8583701, lng: 2.2944813}, map: map, icon: image
+    });
+  }
+</script>
+</html>
