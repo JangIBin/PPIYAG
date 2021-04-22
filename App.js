@@ -13,17 +13,20 @@ import LoginScreen from './src/Component/Login/LoginScreen';
 import RegisterScreen from './src/Component/Login/RegisterScreen';
 import DrawerNavigationRoutes from './src/Component/Login/DrawerNavigatorRoutes';
 
-//MediMap
+// MediMap
 import MediMap from './src/Component/Map/MediMap';
 import MediModal from './src/Component/Map/MediModal';
 import MediMoreInfo from './src/Component/Map/MediMoreInfo';
+
+// Alarm
+import AlarmList from './src/Component/Alarm/AlarmList';
 
 const Stack = createStackNavigator();
 
 const Auth = () => {
   // Stack Navigator for Login and Sign up Screen
   return (
-    <Stack.Navigator initialRouteName="LoginScreen">
+    <Stack.Navigator initialRouteName="SplashScreen">
       <Stack.Screen
         name="LoginScreen"
         component={LoginScreen}
@@ -50,7 +53,7 @@ const Auth = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
+      <Stack.Navigator initialRouteName="오늘의 복용 알람">
         {/* SplashScreen which will come once for 5 Seconds */}
         <Stack.Screen
           name="SplashScreen"
@@ -74,6 +77,9 @@ const App = () => {
         <Stack.Screen name="MediMap" component={MediMap} />
         <Stack.Screen name="MediModal" component={MediModal} />
         <Stack.Screen name="MediMoreInfo" component={MediMoreInfo} />
+        <Stack.Screen 
+          name="오늘의 복용 알람"
+          component={AlarmList} />
       </Stack.Navigator>
         
     </NavigationContainer>
