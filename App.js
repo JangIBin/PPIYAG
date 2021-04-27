@@ -20,6 +20,7 @@ import MediMoreInfo from './src/Component/Map/MediMoreInfo';
 
 // Alarm
 import AlarmList from './src/Component/Alarm/AlarmList';
+import AddAlarm from './src/Component/Alarm/AddAlarm';
 
 const Stack = createStackNavigator();
 
@@ -53,7 +54,7 @@ const Auth = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="오늘의 복용 알람">
+      <Stack.Navigator initialRouteName="AlarmList">
         {/* SplashScreen which will come once for 5 Seconds */}
         <Stack.Screen
           name="SplashScreen"
@@ -78,8 +79,9 @@ const App = () => {
         <Stack.Screen name="MediModal" component={MediModal} />
         <Stack.Screen name="MediMoreInfo" component={MediMoreInfo} />
         <Stack.Screen 
-          name="오늘의 복용 알람"
+          name="AlarmList"
           component={AlarmList} />
+        <Stack.Screen name="AddAlarm" component={AddAlarm} />
       </Stack.Navigator>
         
     </NavigationContainer>

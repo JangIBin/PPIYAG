@@ -14,7 +14,7 @@ const CustomSidebarMenu = (props) => {
     <View style={stylesSidebar.sideMenuContainer}>
       <View style={stylesSidebar.profileHeader}>
         <View style={stylesSidebar.profileHeaderPicCircle}>
-          <Text style={{fontSize: 25, color: '#307ecc'}}>
+          <Text style={{fontSize: 25, color: '#1F212D'}}>
             {'Ppiyag'.charAt(0)}
           </Text>
         </View>
@@ -24,11 +24,11 @@ const CustomSidebarMenu = (props) => {
       </View>
       <View style={stylesSidebar.profileHeaderLine} />
 
-      <DrawerContentScrollView {...props}>
-        <DrawerItemList {...props} />
+      <DrawerContentScrollView {...props} >
+        <DrawerItemList {...props} style={stylesSidebar.drawItemView} />
         <DrawerItem
           label={({color}) => 
-            <Text style={{color: '#d8d8d8'}}>
+            <Text style={{color: '#1F212D'}}>
               Logout
             </Text>
           }
@@ -67,13 +67,13 @@ const stylesSidebar = StyleSheet.create({
   sideMenuContainer: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#F2D649',
     paddingTop: 40,
-    color: 'white',
+    color: '#1F212D',
   },
   profileHeader: {
     flexDirection: 'row',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#F2D649',
     padding: 15,
     textAlign: 'center',
   },
@@ -88,7 +88,7 @@ const stylesSidebar = StyleSheet.create({
     alignItems: 'center',
   },
   profileHeaderText: {
-    color: 'white',
+    color: '#1F212D',
     alignSelf: 'center',
     paddingHorizontal: 10,
     fontWeight: 'bold',
@@ -96,7 +96,10 @@ const stylesSidebar = StyleSheet.create({
   profileHeaderLine: {
     height: 1,
     marginHorizontal: 20,
-    backgroundColor: '#e2e2e2',
+    backgroundColor: '#1F212D',
     marginTop: 15,
+  },
+  drawItemView: {
+    color: "#1F212D",
   },
 });

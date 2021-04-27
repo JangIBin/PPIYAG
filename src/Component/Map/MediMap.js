@@ -88,7 +88,6 @@ const MapEx = () => {
                             setSendModal(pharmacy);
                         }}
                     >
-                        <Text>Medi</Text>
                     </Marker>
                 ))}
             </MapView>

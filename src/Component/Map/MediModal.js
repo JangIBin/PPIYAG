@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, Modal, TouchableOpacity } from 'react-native';
 import MediMoreInfo from './MediMoreInfo';
 import { useNavigation } from '@react-navigation/native';
-import exit from "../../asset/exit.png";
+import exit from '../../asset/exit.png';
 
 const MediModal = ({showModal, toggleModal, sendModal}) => {
   const navigation = useNavigation(); 
-  console.log(showModal);
   return (
     <View style={styles.container}>
       <Modal visible={showModal} transparent={true}>
