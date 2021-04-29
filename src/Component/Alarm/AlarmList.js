@@ -10,21 +10,17 @@ const AlarmList = ({}) => {
     <View style={styles.container}>
       <View style={styles.timeCenter}>
         <View style={styles.time}>
-            <Text style={styles.alarmTime}>아침</Text>
-            <Text style={styles.alarmTime}>점심</Text>
-            <Text style={styles.alarmTime}>저녁</Text>
-            <Text >취침 전</Text>
+          <TouchableOpacity style={styles.alarmTime}><Text>아침</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.alarmTime}><Text>점심</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.alarmTime}><Text>저녁</Text></TouchableOpacity>
+          <TouchableOpacity><Text>취침 전</Text></TouchableOpacity>
         </View>
       </View>
-      <View style={styles.just}>
       <View style={styles.btnAlign}>
         <TouchableOpacity style={styles.addBtnView} onPress={()=> {navigation.navigate( 'AddAlarm' );}}>
           <Image style={styles.addBtnImg} source={plus}/>
         </TouchableOpacity>
       </View>
-      </View>
-      
-      
     </View>
   )
 };
@@ -60,15 +56,11 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
-
   },
   addBtnImg: {
     width: 30,
     height: 30,
-  }, 
-  just: {
-    justifyContent: 'center'
-  }
+  },
 });
 
 export default AlarmList;
