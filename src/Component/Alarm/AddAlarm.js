@@ -1,66 +1,61 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from "moment";
 
 const AddAlarm = ({}) => {
+  const [time, setTime] = useState(['아침', '점심', '저녁', '취침 전']);
+  const [show, setShow] = useState(false);
+  const [hour, setHour] = useState('1');
+  const [min, setMin] = useState('00');
+  const [color, setColor] = useState(false);
+  const [timer, setTimer] = useState(moment().format("a hh:mm"));
+
+  const showTimePicker = () => {
+    setShow(true)
+  }
+
+  const setTimePicker = (event, date) => {
+    if (date !== undefined) {
+      setTimer(moment(date).format("a hh:mm"))
+    }
+    setShow(false)
+  }
+
+  const pressTime = {
+    style: color ? styles.alarmTimePress : styles.alarmTime,
+  }
+
+  const colorChange = (index) =>{
+    if(index == 2){
+      setColor(color === false ? true : false)
+    }
+  }
+
   return (
     <View style={styles.container}>
       <TextInput style={styles.inputMemo} placeholder="text"></TextInput>
-      <View style={styles.timeCenter}>
-        <View style={styles.time}>
-            <TouchableOpacity style={styles.alarmTime}><Text>아침</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.alarmTime}><Text>점심</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.alarmTime}><Text>저녁</Text></TouchableOpacity>
-            <TouchableOpacity><Text>취침 전</Text></TouchableOpacity>
-        </View>
+      <View style={styles.time}>
+        {time.map((item, index) => (
+            <Text key={index} {...pressTime} onPress={colorChange} >{item}</Text>
+        ))}
+
+          {/* <TouchableOpacity >
+            <Text {...pressTime} onPress={colorChange}>아침</Text>
+          </TouchableOpacity>
+          <TouchableOpacity >
+            <Text {...pressTime} onPress={colorChange}>점심</Text>
+          </TouchableOpacity> */}
+          {/* <TouchableOpacity style={styles.alarmTime} onPress={colorChange}><Text>아침</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.alarmTime}><Text>점심</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.alarmTime}><Text>저녁</Text></TouchableOpacity>
+          <TouchableOpacity><Text>취침 전</Text></TouchableOpacity> */}
       </View>
-      <View style={styles.timePickerView}>
-        <View style={styles.timePickerContainer}>
-          <ScrollView style={styles.scrollView}>
-            {['', '오전', '오후', ''].map((item) => (
-              <TimeBtn item={item}></TimeBtn>
-            ))}
-          </ScrollView>
-          <ScrollView style={[styles.scrollView, { marginHorizontal: 12 }]}>
-            {[
-              '',
-              '12',
-              '01',
-              '02',
-              '03',
-              '04',
-              '05',
-              '06',
-              '07',
-              '08',
-              '09',
-              '10',
-              '11',
-              '',
-            ].map((item) => (
-              <TimeBtn item={item}></TimeBtn>
-            ))}
-          </ScrollView>
-          <ScrollView style={styles.scrollView}>
-            {[
-              '',
-              '00',
-              '05',
-              '10',
-              '15',
-              '20',
-              '25',
-              '30',
-              '35',
-              '40',
-              '45',
-              '50',
-              '55',
-              '',
-            ].map((item) => (
-              <TimeBtn item={item}></TimeBtn>
-            ))}
-          </ScrollView>
-        </View>
+      
+      <View style={styles.timerView}> 
+        <Text style={styles.timerText}>{timer}</Text>
+        <TouchableOpacity style={styles.timerBtn} onPress={showTimePicker}><Text style={styles.timerBtnText}>시간 설정</Text></TouchableOpacity>
+        { show && <DateTimePicker mode="time" value={new Date()} display="spinner" onChange={setTimePicker} />}
       </View>
       <TouchableOpacity style={styles.addBtn}>
         <Text>추가하기</Text>
@@ -69,23 +64,13 @@ const AddAlarm = ({}) => {
   )
 };
 
-const TimeBtn = ({ item }) => {
-  return (
-    <View>
-      <TouchableOpacity style={styles.timeBtn}>
-        <Text style={styles.timeBtnLabel}>{item}</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center'
   },
   inputMemo: {
-    backgroundColor: '#ccc',
+    backgroundColor: '#cccccc',
     width: 300,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
@@ -94,9 +79,6 @@ const styles = StyleSheet.create({
     marginTop: 40,
     paddingLeft: 15,
   },
-  timeCenter: {
-    alignItems: 'center',
-  },
   time: {
     flexDirection: 'row',
     marginTop: 40,
@@ -104,20 +86,46 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   alarmTime: {
-    marginRight: 30,
+    paddingLeft: 10,
+    paddingRight: 10,
+    color: '#000000',
+  },
+  alarmTimePress: {
+    paddingLeft: 10,
+    paddingRight: 20,
+    color: '#f2d649',
   },
   timePickerView: {
     justifyContent: 'center',
     backgroundColor: '#ecf0f1',
-    marginBottom: 40
+    marginBottom: 40,
   },
   timePickerContainer : {
     flexDirection: 'row',
     height: 150,
     width: 300,
   },
-  scrollView: {
-    width: 80,
+  timerView: {
+    borderColor: 'red',
+    flexDirection: 'row',
+    marginBottom: 40,
+  },
+  timerText: {
+    fontSize: 25,
+    marginRight: 30,
+  },
+  timerBtn: {
+    backgroundColor: '#ccc',
+    borderTopLeftRadius:20,
+    borderTopRightRadius:20,
+    borderBottomLeftRadius:20,
+    borderBottomRightRadius:20,
+    width: 90,
+    paddingTop: 6,
+  },
+  timerBtnText: {
+    fontSize: 15,
+    textAlign: 'center',
   },
   addBtn: {
     backgroundColor: '#f2d649',
@@ -130,15 +138,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  timeBtn: {
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  timeBtnLabel: {
-    fontWeight: 'bold',
-  }
 });
 
 export default AddAlarm;
-
