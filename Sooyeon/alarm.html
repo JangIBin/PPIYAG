@@ -1,0 +1,70 @@
+  <!DOCTYPE html>
+  <html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복용 알람</title>
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/alarm.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="time_tab">
+        <ul>
+          <li><a href=""><span>아침</span></a></li>
+          <li><a href=""><span>점심</span></a></li>
+          <li><a href=""><span>저녁</span></a></li>
+          <li><a href=""><span>취침 전</span></a></li>
+        </ul>
+      </div>
+    </header>
+
+    
+  <div class="content">
+    <div class="content_list">
+      <ul class="alarm_list">
+        <li class="alarm active">
+          <a href="#">
+            <div class="alarm_info">
+              <div class="alarm_name">
+                <span class="title active">감기약</span>
+              </div>
+              <button class="onoff active" id="toggle">ON</button>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <a href="alarm_add.html" class="add"></a>
+  </body>
+
+  <!-- onoff -->
+  <script>
+    var btn = document.getElementById('toggle')
+
+    var isEnter = false;
+
+
+    function toggle(){
+    if(isEnter){
+      $('.onoff').removeClass('active')
+      $('.alarm').removeClass('active')
+      $('.title').removeClass('active')
+      btn.innerHTML ='OFF'
+    }else{
+      $('.onoff').addClass('active')
+      $('.alarm').addClass('active')
+      $('.title').addClass('active')
+      btn.innerHTML ='ON'
+    }
+    isEnter = !isEnter
+    }
+
+    btn.onclick=toggle;
+  </script>
+
+  </html>
