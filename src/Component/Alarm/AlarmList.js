@@ -1,23 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import AddAlarm from './AddAlarm';
+import AlarmCard from './AlarmCard';
 import { useNavigation } from '@react-navigation/native';
 import plus from '../../asset/plus.png';
 
-const AlarmList = ({}) => {
-  const navigation = useNavigation(); 
+const AlarmList = ({ navigation, route }) => {
+  //console.log(route)
+  const alarmList = [];
+  const [inputs, setInputs] = useState([]);
+
+  // const handleAlarm = () => {
+  //   const alarm = {
+  //     memoName,
+  //     alarmTime,
+  //   }a
+  //   setAlarms(alarmList.concat(alarm));
+  // }
+  const onCreate = () => {
+    const input = {
+      memoName: route.params?.input,
+      alarmTime: route.params?.alarm,
+    };
+    setInputs(inputs.concat(input));
+    
+    console.log(inputs)
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.timeCenter}>
         <View style={styles.time}>
-          <TouchableOpacity style={styles.alarmTime}><Text>아침</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.alarmTime}><Text>점심</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.alarmTime}><Text>저녁</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.timeTouch}><Text>아침</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.timeTouch}><Text>점심</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.timeTouch}><Text>저녁</Text></TouchableOpacity>
           <TouchableOpacity><Text>취침 전</Text></TouchableOpacity>
         </View>
       </View>
+      <View>
+        { inputs.map((inputItem, i)=>(
+          <AlarmCard key={i} item={inputItem} />
+        ))}
+      </View>
       <View style={styles.btnAlign}>
-        <TouchableOpacity style={styles.addBtnView} onPress={()=> {navigation.navigate( 'AddAlarm' );}}>
+        <TouchableOpacity style={styles.addBtnView} onPress={()=> {navigation.navigate( 'AddAlarm' ); onCreate();}}>
           <Image style={styles.addBtnImg} source={plus}/>
         </TouchableOpacity>
       </View>
@@ -38,13 +64,16 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     fontSize: 30,
   },
-  alarmTime: {
+  timeTouch: {
     marginRight: 30,
   },
   btnAlign: {
+    flex: 2,
+    flexDirection: 'row',
     alignItems: 'flex-end',
-    marginTop: 560,
-    marginRight: 30
+    justifyContent: 'flex-end',
+    marginRight: 30,
+    marginBottom: 30,
   },
   addBtnView: {
     width: 60,

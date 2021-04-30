@@ -3,13 +3,12 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from "moment";
 
-const AddAlarm = ({}) => {
+const AddAlarm = ({ navigation, route }) => {
   const [time, setTime] = useState(['아침', '점심', '저녁', '취침 전']);
   const [show, setShow] = useState(false);
-  const [hour, setHour] = useState('1');
-  const [min, setMin] = useState('00');
   const [color, setColor] = useState(false);
   const [timer, setTimer] = useState(moment().format("a hh:mm"));
+  const [textinput, setTextInput] = useState();
 
   const showTimePicker = () => {
     setShow(true)
@@ -34,7 +33,7 @@ const AddAlarm = ({}) => {
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.inputMemo} placeholder="text"></TextInput>
+      <TextInput style={styles.inputMemo} value={textinput} onChangeText={setTextInput} placeholder="text"></TextInput>
       <View style={styles.time}>
         {time.map((item, index) => (
             <Text key={index} {...pressTime} onPress={colorChange} >{item}</Text>
@@ -57,7 +56,15 @@ const AddAlarm = ({}) => {
         <TouchableOpacity style={styles.timerBtn} onPress={showTimePicker}><Text style={styles.timerBtnText}>시간 설정</Text></TouchableOpacity>
         { show && <DateTimePicker mode="time" value={new Date()} display="spinner" onChange={setTimePicker} />}
       </View>
-      <TouchableOpacity style={styles.addBtn}>
+      <TouchableOpacity style={styles.addBtn} 
+      // onPress={() =>
+      //     navigation.navigate('AlarmList', {
+      //       params: {input: textinput},
+      //     })}
+      onPress={() => {
+        navigation.navigate('AlarmList', { input : textinput, alarm: timer });
+      }}
+      >
         <Text>추가하기</Text>
       </TouchableOpacity>
     </View>
@@ -137,6 +144,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 400,
   },
 });
 
