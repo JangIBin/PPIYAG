@@ -27,15 +27,20 @@ const AddAlarm = ({ navigation, route }) => {
     }
     setShow(false)
   }
-
-  const colorChange = (index) =>{
-    time[index].color = time[index].color == false ? true : false;
+  useEffect(()=> {
     setTime(time)
-    console.log(time)
+  },[])
+
+  const colorChange = (index) => {
+    const temp = [].concat(time); //list 복사 
+    console.log(temp);
+    temp[index].color = temp[index].color == false ? true : false;
+    setTime(temp)
   }
+  console.log(time);
 
   return (
-    
+
     <View style={styles.container}>
       <TextInput style={styles.inputMemo} value={textinput} onChangeText={setTextInput} placeholder="text"></TextInput>
       <View style={styles.time}>
@@ -44,17 +49,6 @@ const AddAlarm = ({ navigation, route }) => {
               {item.name}
             </Text>
         ))}
-
-          {/* <TouchableOpacity >
-            <Text {...pressTime} onPress={colorChange}>아침</Text>
-          </TouchableOpacity>
-          <TouchableOpacity >
-            <Text {...pressTime} onPress={colorChange}>점심</Text>
-          </TouchableOpacity> */}
-          {/* <TouchableOpacity style={styles.alarmTime} onPress={colorChange}><Text>아침</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.alarmTime}><Text>점심</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.alarmTime}><Text>저녁</Text></TouchableOpacity>
-          <TouchableOpacity><Text>취침 전</Text></TouchableOpacity> */}
       </View>
       
       <View style={styles.timerView}> 
@@ -65,8 +59,7 @@ const AddAlarm = ({ navigation, route }) => {
       <TouchableOpacity style={styles.addBtn} 
         onPress={() => {
         navigation.navigate('AlarmList', { input : textinput, alarm: timer });
-      }}
-      >
+      }}>
         <Text>추가하기</Text>
       </TouchableOpacity>
     </View>
@@ -101,7 +94,7 @@ const styles = StyleSheet.create({
   },
   alarmTimePress: {
     paddingLeft: 10,
-    paddingRight: 20,
+    paddingRight: 10,
     color: '#f2d649',
   },
   timePickerView: {
