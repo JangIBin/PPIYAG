@@ -6,26 +6,20 @@ import { useNavigation } from '@react-navigation/native';
 import plus from '../../asset/plus.png';
 
 const AlarmList = ({ navigation, route }) => {
-  //console.log(route)
-  const alarmList = [];
   const [inputs, setInputs] = useState([]);
-
-  // const handleAlarm = () => {
-  //   const alarm = {
-  //     memoName,
-  //     alarmTime,
-  //   }a
-  //   setAlarms(alarmList.concat(alarm));
-  // }
+  
   const onCreate = () => {
     const input = {
       memoName: route.params?.input,
       alarmTime: route.params?.alarm,
     };
     setInputs(inputs.concat(input));
-    
-    console.log(inputs)
+    //console.log(inputs)
   };
+
+  // useEffect(()=>{
+  //   setInputs(inputs.concat(input));
+  // }, [input]);
 
   return (
     <View style={styles.container}>

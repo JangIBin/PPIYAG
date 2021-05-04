@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet} from 'react-native';
 
 const MediMoreInfo = ({ route }) => {
+  
   const { mediMore } = route.params;
+  //console.log(JSON.parse(mediMore))
   return (
     <View style={styles.infoBg}>
       <View style={styles.mediTop}>

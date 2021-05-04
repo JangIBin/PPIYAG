@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, TouchableHighlight } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from "moment";
+import { color } from 'react-native-reanimated';
 
 const AddAlarm = ({ navigation, route }) => {
-  const [time, setTime] = useState(['아침', '점심', '저녁', '취침 전']);
+  const [time, setTime] = useState([
+    { name: '아침', color: false },
+    { name: '점심', color: false },
+    { name: '저녁', color: false },
+    { name: '취짐 전', color: false },
+  ]);
+  //const [select, setSelect] = useState([]);
   const [show, setShow] = useState(false);
-  const [color, setColor] = useState(false);
   const [timer, setTimer] = useState(moment().format("a hh:mm"));
   const [textinput, setTextInput] = useState();
+  
 
   const showTimePicker = () => {
     setShow(true)
@@ -21,22 +28,21 @@ const AddAlarm = ({ navigation, route }) => {
     setShow(false)
   }
 
-  const pressTime = {
-    style: color ? styles.alarmTimePress : styles.alarmTime,
-  }
-
   const colorChange = (index) =>{
-    if(index == 2){
-      setColor(color === false ? true : false)
-    }
+    time[index].color = time[index].color == false ? true : false;
+    setTime(time)
+    console.log(time)
   }
 
   return (
+    
     <View style={styles.container}>
       <TextInput style={styles.inputMemo} value={textinput} onChangeText={setTextInput} placeholder="text"></TextInput>
       <View style={styles.time}>
         {time.map((item, index) => (
-            <Text key={index} {...pressTime} onPress={colorChange} >{item}</Text>
+            <Text key={index} style={ item.color ? styles.alarmTimePress : styles.alarmTime} onPress={()=>colorChange(index)}>
+              {item.name}
+            </Text>
         ))}
 
           {/* <TouchableOpacity >
@@ -57,11 +63,7 @@ const AddAlarm = ({ navigation, route }) => {
         { show && <DateTimePicker mode="time" value={new Date()} display="spinner" onChange={setTimePicker} />}
       </View>
       <TouchableOpacity style={styles.addBtn} 
-      // onPress={() =>
-      //     navigation.navigate('AlarmList', {
-      //       params: {input: textinput},
-      //     })}
-      onPress={() => {
+        onPress={() => {
         navigation.navigate('AlarmList', { input : textinput, alarm: timer });
       }}
       >
@@ -149,3 +151,4 @@ const styles = StyleSheet.create({
 });
 
 export default AddAlarm;
+
