@@ -11,12 +11,10 @@ const AddAlarm = ({ navigation, route }) => {
     { name: '저녁', color: false },
     { name: '취짐 전', color: false },
   ]);
-  //const [select, setSelect] = useState([]);
   const [show, setShow] = useState(false);
   const [timer, setTimer] = useState(moment().format("a hh:mm"));
   const [textinput, setTextInput] = useState();
   
-
   const showTimePicker = () => {
     setShow(true)
   }
@@ -40,25 +38,34 @@ const AddAlarm = ({ navigation, route }) => {
   console.log(time);
 
   return (
-
     <View style={styles.container}>
-      <TextInput style={styles.inputMemo} value={textinput} onChangeText={setTextInput} placeholder="text"></TextInput>
-      <View style={styles.time}>
+      <View style={styles.inputView}>
+        <Text style={styles.inputName}>알람 이름</Text>
+        <TextInput style={styles.inputMemo} value={textinput} onChangeText={setTextInput} placeholder="ex) 감기약"></TextInput>
+      </View>
+      <Text style={styles.timeText}>복용 시간</Text>
+      <View style={styles.timeAlign}>
+        <View style={styles.timeSelect}>
         {time.map((item, index) => (
             <Text key={index} style={ item.color ? styles.alarmTimePress : styles.alarmTime} onPress={()=>colorChange(index)}>
               {item.name}
             </Text>
         ))}
+        </View>
       </View>
-      
-      <View style={styles.timerView}> 
-        <Text style={styles.timerText}>{timer}</Text>
-        <TouchableOpacity style={styles.timerBtn} onPress={showTimePicker}><Text style={styles.timerBtnText}>시간 설정</Text></TouchableOpacity>
-        { show && <DateTimePicker mode="time" value={new Date()} display="spinner" onChange={setTimePicker} />}
+      <Text style={styles.timer}>시간 설정</Text>
+      <View style={styles.timerAlign}>
+        <View style={styles.timerView}> 
+          <Text style={styles.timerText}>{timer}</Text>
+          <TouchableOpacity style={styles.timerBtn} onPress={showTimePicker}>
+            <Text style={styles.timerBtnText}>시간 설정</Text>
+          </TouchableOpacity>
+          { show && <DateTimePicker mode="time" value={new Date()} display="spinner" onChange={setTimePicker} />}
+        </View>
       </View>
       <TouchableOpacity style={styles.addBtn} 
         onPress={() => {
-        navigation.navigate('AlarmList', { input : textinput, alarm: timer });
+        navigation.navigate('AlarmList', { input : textinput, alarm: timer, timeZone: time });
       }}>
         <Text>추가하기</Text>
       </TouchableOpacity>
@@ -69,61 +76,89 @@ const AddAlarm = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+  },
+  inputView: {
+    marginTop: 30,
+    width: '80%',
+  },
+  inputName: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    marginBottom: 15,
   },
   inputMemo: {
-    backgroundColor: '#cccccc',
-    width: 300,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
-    marginTop: 40,
-    paddingLeft: 15,
+    backgroundColor: '#ffffff',
+    borderWidth: 1,
+    borderColor: '#000000',
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    borderBottomLeftRadius: 25,
+    borderBottomRightRadius: 25,
+    paddingLeft: 20,
   },
-  time: {
+  timeText: {
+    marginTop: 30,
+    fontSize: 17,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    width: '80%',
+  },
+  timeAlign:{
+    alignItems: 'center',
+    backgroundColor: '#eeeeee',
+    width: '100%',
+    paddingTop: 11,
+    paddingBottom: 11,
+  },
+  timeSelect: {
     flexDirection: 'row',
-    marginTop: 40,
-    marginBottom: 40,
     fontSize: 30,
   },
   alarmTime: {
     paddingLeft: 10,
     paddingRight: 10,
     color: '#000000',
+    fontSize: 16,
   },
   alarmTimePress: {
     paddingLeft: 10,
     paddingRight: 10,
     color: '#f2d649',
+    fontSize: 16,
   },
-  timePickerView: {
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    marginBottom: 40,
+  timer: {
+    marginTop: 30,
+    fontSize: 17,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    width: '80%',
   },
-  timePickerContainer : {
-    flexDirection: 'row',
-    height: 150,
-    width: 300,
+  timerAlign: {
+    alignItems: 'center',
+    backgroundColor: '#eeeeee',
+    width: '100%',
+    paddingTop: 11,
+    paddingBottom: 11,
   },
   timerView: {
-    borderColor: 'red',
     flexDirection: 'row',
-    marginBottom: 40,
+    paddingTop: 15,
+    paddingBottom: 15,
   },
   timerText: {
     fontSize: 25,
     marginRight: 30,
   },
   timerBtn: {
-    backgroundColor: '#ccc',
-    borderTopLeftRadius:20,
-    borderTopRightRadius:20,
-    borderBottomLeftRadius:20,
-    borderBottomRightRadius:20,
+    backgroundColor: '#cccccc',
+    borderTopLeftRadius:25,
+    borderTopRightRadius:25,
+    borderBottomLeftRadius:25,
+    borderBottomRightRadius:25,
+    paddingTop: 5,
     width: 90,
-    paddingTop: 6,
   },
   timerBtnText: {
     fontSize: 15,
@@ -139,7 +174,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 400,
+    marginTop: 280,
   },
 });
 

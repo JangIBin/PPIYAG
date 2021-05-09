@@ -14,12 +14,7 @@ const AlarmList = ({ navigation, route }) => {
       alarmTime: route.params?.alarm,
     };
     setInputs(inputs.concat(input));
-    //console.log(inputs)
   };
-
-  // useEffect(()=>{
-  //   setInputs(inputs.concat(input));
-  // }, [input]);
 
   return (
     <View style={styles.container}>
@@ -48,6 +43,7 @@ const AlarmList = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   timeCenter: {
     alignItems: 'center',
