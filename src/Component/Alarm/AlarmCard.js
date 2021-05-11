@@ -7,10 +7,10 @@ const AlarmCard = ({ i, item }) => {
 
   return (
     <View style={styles.alarmView}>
-        <View style={styles.alarmContent}>
-            <Text style={styles.alarmName}>{item.memoName}</Text> 
-            <Text style={styles.alarmTime}>{item.alarmTime}</Text> 
-        </View>
+      <View style={styles.alarmContent}>
+        <Text style={styles.alarmName}>{item.memoName}</Text> 
+        <Text style={styles.alarmTime}>{item.alarmTime}</Text> 
+      </View>
     </View>
   )
 };

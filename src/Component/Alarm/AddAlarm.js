@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { SegmentedControls } from 'react-native-radio-buttons';
 import moment from "moment";
-import { color } from 'react-native-reanimated';
 
 const AddAlarm = ({ navigation, route }) => {
-  const [time, setTime] = useState([
-    { name: '아침', color: false },
-    { name: '점심', color: false },
-    { name: '저녁', color: false },
-    { name: '취짐 전', color: false },
-  ]);
+  const time = ['아침', '점심', '저녁', '취침 전'];
   const [show, setShow] = useState(false);
   const [timer, setTimer] = useState(moment().format("a hh:mm"));
   const [textinput, setTextInput] = useState();
@@ -25,17 +20,10 @@ const AddAlarm = ({ navigation, route }) => {
     }
     setShow(false)
   }
-  useEffect(()=> {
-    setTime(time)
-  },[])
 
-  const colorChange = (index) => {
-    const temp = [].concat(time); //list 복사 
-    console.log(temp);
-    temp[index].color = temp[index].color == false ? true : false;
-    setTime(temp)
-  }
-  console.log(time);
+  // useEffect(()=> {
+  //   setTime(time)
+  // },[])
 
   return (
     <View style={styles.container}>
@@ -45,12 +33,17 @@ const AddAlarm = ({ navigation, route }) => {
       </View>
       <Text style={styles.timeText}>복용 시간</Text>
       <View style={styles.timeAlign}>
-        <View style={styles.timeSelect}>
-        {time.map((item, index) => (
-            <Text key={index} style={ item.color ? styles.alarmTimePress : styles.alarmTime} onPress={()=>colorChange(index)}>
-              {item.name}
-            </Text>
-        ))}
+        <View style={styles.timeSegment}>
+          <SegmentedControls
+            tint={'#000'}
+            backTint={'#eee'}
+            selectedTint= {'#f2d649'}
+            selectedBackgroundColor={'#eee'}
+            separatorTint={'#eee'}
+            containerBorderTint={'#eee'}
+            optionStyle={{fontWeight: 'bold'}}
+            options={time}
+          />
         </View>
       </View>
       <Text style={styles.timer}>시간 설정</Text>
@@ -60,15 +53,17 @@ const AddAlarm = ({ navigation, route }) => {
           <TouchableOpacity style={styles.timerBtn} onPress={showTimePicker}>
             <Text style={styles.timerBtnText}>시간 설정</Text>
           </TouchableOpacity>
-          { show && <DateTimePicker mode="time" value={new Date()} display="spinner" onChange={setTimePicker} />}
+          { show && <DateTimePicker mode="time" value={new Date(6,0)} display="spinner" onChange={setTimePicker} />}
         </View>
       </View>
-      <TouchableOpacity style={styles.addBtn} 
-        onPress={() => {
-        navigation.navigate('AlarmList', { input : textinput, alarm: timer, timeZone: time });
-      }}>
-        <Text>추가하기</Text>
-      </TouchableOpacity>
+      <View style={styles.btnView}>
+        <TouchableOpacity style={styles.addBtn} 
+          onPress={() => {
+          navigation.navigate('AlarmList', { input : textinput, alarm: timer, timeZone: time });
+        }}>
+          <Text>추가하기</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 };
@@ -105,12 +100,15 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     width: '80%',
   },
-  timeAlign:{
+  timeAlign: {
     alignItems: 'center',
     backgroundColor: '#eeeeee',
     width: '100%',
     paddingTop: 11,
     paddingBottom: 11,
+  },
+  timeSegment: {
+    width: '70%'
   },
   timeSelect: {
     flexDirection: 'row',
@@ -153,9 +151,7 @@ const styles = StyleSheet.create({
   },
   timerBtn: {
     backgroundColor: '#cccccc',
-    borderTopLeftRadius:25,
-    borderTopRightRadius:25,
-    borderBottomLeftRadius:25,
+    borderRadius: 25,
     borderBottomRightRadius:25,
     paddingTop: 5,
     width: 90,
@@ -164,17 +160,20 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'center',
   },
+  btnView: {
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    marginBottom: 40,
+  },
   addBtn: {
     backgroundColor: '#f2d649',
     width: 300,
     height: 45,
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
-    borderBottomLeftRadius: 50,
-    borderBottomRightRadius: 50,
+    borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 280,
+    elevation: 2,
+    marginTop: 270,
   },
 });
 
