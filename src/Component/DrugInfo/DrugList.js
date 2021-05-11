@@ -9,16 +9,14 @@ const DrugList = () => {
 
     const fetchDrugInfo = async () => {
         try {
-          // 요청이 시작 할 때에는 error 와 users 를 초기화하고
           setError(null);
           setDrugs(null);
-          // loading 상태를 true 로 바꿉니다.
+
           setLoading(true);
           const response = await axios.get(
             'http://192.168.0.252:3000/drugInfo'
           );
-          setDrugs(response.data); // 데이터는 response.data 안에 들어있습니다.
-          console.log(drugs);
+          setDrugs(response.data.body.items); // 데이터는 response.data 안에 들어있습니다.
         } catch (e) {
           setError(e);
         }
@@ -28,15 +26,21 @@ const DrugList = () => {
       useEffect(() => {
         fetchDrugInfo();
       }, []);
+      useEffect(() => {
+        console.log('loading', loading);
+        console.log('drugs', drugs);
+        console.log('error', error);
+      }, [loading, drugs, error]);
     
-      if (loading) return <View>로딩중..</View>;
-      if (error) return <View>에러가 발생했습니다</View>;
-      if (!drugs) return null;
+      if (loading) return <View><Text>로딩중..</Text></View>;
+      if (error) return <View><Text>에러가 발생했습니다</Text></View>;
+      if (!drugs) return <View><Text>데이터를 받아오지 못했습니다.</Text></View>;
     
-
     return (
         <View>
-          <Text>{drugs.entpName}</Text>
+          {drugs.map(drug => (
+            <Text key={drug.id}>{drug.entpName}</Text>
+          ))}
         </View>
     )
 }
