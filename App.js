@@ -18,6 +18,9 @@ import MediMap from './src/Component/Map/MediMap';
 import MediModal from './src/Component/Map/MediModal';
 import MediMoreInfo from './src/Component/Map/MediMoreInfo';
 
+//DrugInfo
+import DrugList from './src/Component/DrugInfo/DrugList';
+
 const Stack = createStackNavigator();
 
 const Auth = () => {
@@ -74,6 +77,7 @@ const App = () => {
         <Stack.Screen name="MediMap" component={MediMap} />
         <Stack.Screen name="MediModal" component={MediModal} />
         <Stack.Screen name="MediMoreInfo" component={MediMoreInfo} />
+        <Stack.Screen name="DrugList" component={DrugList} />
       </Stack.Navigator>
         
     </NavigationContainer>
