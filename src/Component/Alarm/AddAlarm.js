@@ -8,7 +8,10 @@ const AddAlarm = ({ navigation, route }) => {
   const time = ['아침', '점심', '저녁', '취침 전'];
   const [show, setShow] = useState(false);
   const [timer, setTimer] = useState(moment().format("a hh:mm"));
-  const [textinput, setTextInput] = useState();
+  const [textInput, setTextInput] = useState();
+  const [newAlarm, setNewAlarm] = useState([]);
+
+  const { getInfoValue } = route.params;
   
   const showTimePicker = () => {
     setShow(true)
@@ -21,15 +24,30 @@ const AddAlarm = ({ navigation, route }) => {
     setShow(false)
   }
 
+  const sendInfo = () => {
+    console.log('test');
+    if(getInfoValue) {
+      getInfoValue(textInput, timer);
+    }
+  }
+
+  // const onAddBtn = (input, newAla) => {
+  //   setNewAlarm({
+  //     name: input,
+  //     alarmtime: newAla
+  //   });
+  // }
+
   // useEffect(()=> {
   //   setTime(time)
   // },[])
+  //console.log(newAlarm);
 
   return (
     <View style={styles.container}>
       <View style={styles.inputView}>
         <Text style={styles.inputName}>알람 이름</Text>
-        <TextInput style={styles.inputMemo} value={textinput} onChangeText={setTextInput} placeholder="ex) 감기약"></TextInput>
+        <TextInput style={styles.inputMemo} value={textInput} onChangeText={setTextInput} placeholder="ex) 감기약"></TextInput>
       </View>
       <Text style={styles.timeText}>복용 시간</Text>
       <View style={styles.timeAlign}>
@@ -53,13 +71,15 @@ const AddAlarm = ({ navigation, route }) => {
           <TouchableOpacity style={styles.timerBtn} onPress={showTimePicker}>
             <Text style={styles.timerBtnText}>시간 설정</Text>
           </TouchableOpacity>
-          { show && <DateTimePicker mode="time" value={new Date(6,0)} display="spinner" onChange={setTimePicker} />}
+          { show && <DateTimePicker mode="time" value={new Date()} display="spinner" onChange={setTimePicker} />}
         </View>
       </View>
       <View style={styles.btnView}>
         <TouchableOpacity style={styles.addBtn} 
           onPress={() => {
-          navigation.navigate('AlarmList', { input : textinput, alarm: timer, timeZone: time });
+            navigation.navigate('AlarmList', sendInfo());
+            
+            //onAddBtn(textInput, timer); 
         }}>
           <Text>추가하기</Text>
         </TouchableOpacity>

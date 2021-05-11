@@ -8,14 +8,17 @@ import plus from '../../asset/plus.png';
 const AlarmList = ({ navigation, route }) => {
   const time = ['아침', '점심', '저녁', '취침 전'];
   const [inputs, setInputs] = useState([]);
-  
-  const onCreate = () => {
+  //console.log(route);
+
+  getInfoValue = (textInput, timer) => {
+    console.log(textInput);
     const input = {
-      memoName: route.params?.input,
-      alarmTime: route.params?.alarm,
+      input: textInput,
+      alarmtimer: timer, 
     };
     setInputs(inputs.concat(input));
   };
+  
 
   return (
     <View style={styles.container}>
@@ -39,7 +42,7 @@ const AlarmList = ({ navigation, route }) => {
         ))}
       </View>
       <View style={styles.btnAlign}>
-        <TouchableOpacity style={styles.addBtnView} onPress={()=> {navigation.navigate( 'AddAlarm' ); onCreate();}}>
+        <TouchableOpacity style={styles.addBtnView} onPress={()=> {navigation.navigate( 'AddAlarm', { getInfoValue: getInfoValue }); }}>
           <Image style={styles.addBtnImg} source={plus}/>
         </TouchableOpacity>
       </View>
