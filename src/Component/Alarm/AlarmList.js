@@ -8,18 +8,18 @@ import plus from '../../asset/plus.png';
 const AlarmList = ({ navigation, route }) => {
   const time = ['아침', '점심', '저녁', '취침 전'];
   const [inputs, setInputs] = useState([]);
-  //console.log(route);
+  const [selectOption, setSelectedOption] = useState('아침');
 
-  getInfoValue = (textInput, timer) => {
+  getInfoValue = (textInput, timer, selectedAddAlarm) => {
     console.log(textInput);
     const input = {
       input: textInput,
       alarmtimer: timer, 
+      timeoption: selectedAddAlarm
     };
     setInputs(inputs.concat(input));
   };
   
-
   return (
     <View style={styles.container}>
       <View style={styles.timeAlign}>
@@ -32,12 +32,18 @@ const AlarmList = ({ navigation, route }) => {
             separatorTint={'#fff'}
             containerBorderTint={'#fff'}
             optionStyle={{fontWeight: 'bold'}}
+            onSelection = {setSelectedOption} 
             options={time}
           />
         </View>
         </View>
       <View>
         { inputs.map((inputItem, i)=>(
+          // console.log(inputItem)
+          // console.log(selectOption)
+          // if(inputItem.tiemoption == selectOption){
+          //   return <AlarmCard key={i} item={inputItem} />
+          // }
           <AlarmCard key={i} item={inputItem} />
         ))}
       </View>

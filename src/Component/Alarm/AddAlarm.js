@@ -9,8 +9,8 @@ const AddAlarm = ({ navigation, route }) => {
   const [show, setShow] = useState(false);
   const [timer, setTimer] = useState(moment().format("a hh:mm"));
   const [textInput, setTextInput] = useState();
-  const [newAlarm, setNewAlarm] = useState([]);
-
+  const [selectedAddAlarm, setSelectedAddAlarm] = useState();
+  
   const { getInfoValue } = route.params;
   
   const showTimePicker = () => {
@@ -27,16 +27,9 @@ const AddAlarm = ({ navigation, route }) => {
   const sendInfo = () => {
     console.log('test');
     if(getInfoValue) {
-      getInfoValue(textInput, timer);
+      getInfoValue(textInput, timer, selectedAddAlarm);
     }
   }
-
-  // const onAddBtn = (input, newAla) => {
-  //   setNewAlarm({
-  //     name: input,
-  //     alarmtime: newAla
-  //   });
-  // }
 
   // useEffect(()=> {
   //   setTime(time)
@@ -60,6 +53,7 @@ const AddAlarm = ({ navigation, route }) => {
             separatorTint={'#eee'}
             containerBorderTint={'#eee'}
             optionStyle={{fontWeight: 'bold'}}
+            onSelection = {setSelectedAddAlarm} 
             options={time}
           />
         </View>
@@ -78,8 +72,6 @@ const AddAlarm = ({ navigation, route }) => {
         <TouchableOpacity style={styles.addBtn} 
           onPress={() => {
             navigation.navigate('AlarmList', sendInfo());
-            
-            //onAddBtn(textInput, timer); 
         }}>
           <Text>추가하기</Text>
         </TouchableOpacity>
@@ -128,7 +120,7 @@ const styles = StyleSheet.create({
     paddingBottom: 11,
   },
   timeSegment: {
-    width: '70%'
+    width: '70%',
   },
   timeSelect: {
     flexDirection: 'row',
