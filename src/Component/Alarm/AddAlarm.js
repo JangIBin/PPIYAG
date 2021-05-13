@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import moment from "moment";
@@ -10,8 +10,14 @@ const AddAlarm = ({ navigation, route }) => {
   const [timer, setTimer] = useState(moment().format("a hh:mm"));
   const [textInput, setTextInput] = useState();
   const [selectedAddAlarm, setSelectedAddAlarm] = useState();
+  const [selectedIndex, setSelectedIndex] = useState();
   
   const { getInfoValue } = route.params;
+
+  const setSelectedOption = (selectedAddAlarm, selectedIndex) => {
+    setSelectedAddAlarm(selectedAddAlarm)
+    setSelectedIndex(selectedIndex)
+  }
   
   const showTimePicker = () => {
     setShow(true)
@@ -25,9 +31,8 @@ const AddAlarm = ({ navigation, route }) => {
   }
 
   const sendInfo = () => {
-    console.log('test');
     if(getInfoValue) {
-      getInfoValue(textInput, timer, selectedAddAlarm);
+      getInfoValue(textInput, timer, selectedAddAlarm, selectedIndex);
     }
   }
 
@@ -53,7 +58,7 @@ const AddAlarm = ({ navigation, route }) => {
             separatorTint={'#eee'}
             containerBorderTint={'#eee'}
             optionStyle={{fontWeight: 'bold'}}
-            onSelection = {setSelectedAddAlarm} 
+            onSelection = {setSelectedOption}  
             options={time}
           />
         </View>

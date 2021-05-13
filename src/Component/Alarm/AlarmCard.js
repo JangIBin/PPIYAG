@@ -14,8 +14,8 @@ const AlarmCard = ({ i, item, toggle }) => {
       <View style={onOff ? styles.alarmView : styles.alarmViewPress}>
         {/* <View style={styles.align}> */}
           <View style={styles.alarmContent}>
-            <Text style={onOff ? styles.alarmName : styles.alarmNamePress}>{item.input}</Text> 
-            <Text style={onOff ? styles.alarmTime : styles.alarmTimePress}>{item.alarmtimer}</Text> 
+            <Text style={onOff ? styles.alarmName : styles.alarmNamePress}>{item.alarmTitle}</Text> 
+            <Text style={onOff ? styles.alarmTime : styles.alarmTimePress}>{item.alarmTimer}</Text> 
             <TouchableOpacity style={onOff ? styles.onOffBtn : styles.onOffBtnPress} onPress={onBtnClick}>
               <Text style={onOff ? styles.onOffText : styles.onOffTextPress}>
                 {onOff ? 'ON' : 'OFF'}
@@ -23,7 +23,6 @@ const AlarmCard = ({ i, item, toggle }) => {
             </TouchableOpacity>
             { toggle && <Icon name="close-circle-outline" color="red" size={30}></Icon>}
           </View>
-          
           {/* { toggle && <Icon name="close-circle-outline" color="red" size={30}></Icon>} */}
         {/* </View> */}
       </View>

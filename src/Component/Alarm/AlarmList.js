@@ -9,15 +9,26 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const AlarmList = ({ navigation, route }) => {
   const time = ['아침', '점심', '저녁', '취침 전'];
   const [inputs, setInputs] = useState([]);
-  const [selectOption, setSelectedOption] = useState('아침');
+  const [selectOption, setSelectedOption] = useState('저녁');
   const [delTg, setDelTg] = useState(false);
+  const [selectedAddAlarm, setSelectedAddAlarm] = useState();
+  const [selectedIndex, setSelectedIndex] = useState();
+  const [newList, setNewList] = useState([]);
 
-  getInfoValue = (textInput, timer, selectedAddAlarm) => {
-    console.log(textInput);
+  const setSelected = (selectedAddAlarm, selectedIndex) => {
+    setSelectedAddAlarm(selectedAddAlarm)
+    setSelectedIndex(selectedIndex)
+    const newInputList = inputs.filter((newInput) => newInput.alarmIndex == selectedIndex);
+    setNewList(newInputList)
+    console.log(newList)
+  }
+
+  getInfoValue = (textInput, timer, selectedAddAlarm, selectedIndex) => {
     const input = {
-      input: textInput,
-      alarmtimer: timer, 
-      timeoption: selectedAddAlarm
+      alarmTitle: textInput,
+      alarmTimer: timer, 
+      timeOption: selectedAddAlarm,
+      alarmIndex: selectedIndex,
     };
     setInputs(inputs.concat(input));
   };
@@ -27,6 +38,7 @@ const AlarmList = ({ navigation, route }) => {
   }
   
   return (
+    
     <View style={styles.container}>
       <View style={styles.delIcon}>
         <Icon name="trash-outline" color={delTg ? 'red' : 'black'} size={30} onPress={delToggle} />
@@ -41,18 +53,13 @@ const AlarmList = ({ navigation, route }) => {
             separatorTint={'#fff'}
             containerBorderTint={'#fff'}
             optionStyle={{fontWeight: 'bold'}}
-            onSelection = {setSelectedOption} 
+            onSelection = {setSelected}
             options={time}
           />
         </View>
       </View>
       <View>
-        { inputs.map((inputItem, i)=>(
-          // console.log(inputItem)
-          // console.log(selectOption)
-          // if(inputItem.tiemoption == selectOption){
-          //   return <AlarmCard key={i} item={inputItem} />
-          // }
+        { newList.map((inputItem, i)=>(
           <AlarmCard key={i} item={inputItem} toggle={delTg} />
         ))}
       </View>
@@ -110,4 +117,5 @@ const styles = StyleSheet.create({
 });
 
 export default AlarmList;
+
 
