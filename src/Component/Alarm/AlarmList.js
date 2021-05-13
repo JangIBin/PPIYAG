@@ -4,11 +4,13 @@ import { SegmentedControls } from 'react-native-radio-buttons';
 import { useNavigation } from '@react-navigation/native';
 import AlarmCard from './AlarmCard';
 import plus from '../../asset/plus.png';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const AlarmList = ({ navigation, route }) => {
   const time = ['아침', '점심', '저녁', '취침 전'];
   const [inputs, setInputs] = useState([]);
   const [selectOption, setSelectedOption] = useState('아침');
+  const [delTg, setDelTg] = useState(false);
 
   getInfoValue = (textInput, timer, selectedAddAlarm) => {
     console.log(textInput);
@@ -19,9 +21,16 @@ const AlarmList = ({ navigation, route }) => {
     };
     setInputs(inputs.concat(input));
   };
+
+  const delToggle = () => {
+    setDelTg(!delTg)
+  }
   
   return (
     <View style={styles.container}>
+      <View style={styles.delIcon}>
+        <Icon name="trash-outline" color={delTg ? 'red' : 'black'} size={30} onPress={delToggle} />
+      </View>
       <View style={styles.timeAlign}>
         <View style={styles.timeSegment}>
           <SegmentedControls
@@ -36,7 +45,7 @@ const AlarmList = ({ navigation, route }) => {
             options={time}
           />
         </View>
-        </View>
+      </View>
       <View>
         { inputs.map((inputItem, i)=>(
           // console.log(inputItem)
@@ -44,12 +53,12 @@ const AlarmList = ({ navigation, route }) => {
           // if(inputItem.tiemoption == selectOption){
           //   return <AlarmCard key={i} item={inputItem} />
           // }
-          <AlarmCard key={i} item={inputItem} />
+          <AlarmCard key={i} item={inputItem} toggle={delTg} />
         ))}
       </View>
       <View style={styles.btnAlign}>
         <TouchableOpacity style={styles.addBtnView} onPress={()=> {navigation.navigate( 'AddAlarm', { getInfoValue: getInfoValue }); }}>
-          <Image style={styles.addBtnImg} source={plus}/>
+          <Icon name="add-outline" size={40} color="white" />
         </TouchableOpacity>
       </View>
     </View>
@@ -61,11 +70,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  delIcon: {
+    alignItems: 'flex-end',
+    marginTop: 5,
+    marginRight: 15,
+  },
   timeAlign: {
     alignItems: 'center',
   },
   timeSegment: {
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 30,
     paddingTop: 15,
     paddingBottom: 15,
@@ -92,10 +106,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 2,
-  },
-  addBtnImg: {
-    width: 30,
-    height: 30,
   },
 });
 

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const AlarmCard = ({ i, item }) => {
+const AlarmCard = ({ i, item, toggle }) => {
   const [onOff, setOnOff] = useState(true);
   const onBtnClick = () => {
     setOnOff(!onOff)
@@ -11,17 +12,20 @@ const AlarmCard = ({ i, item }) => {
   return (
     <View style={styles.alarmAlign}>
       <View style={onOff ? styles.alarmView : styles.alarmViewPress}>
-        <View style={styles.align}>
+        {/* <View style={styles.align}> */}
           <View style={styles.alarmContent}>
             <Text style={onOff ? styles.alarmName : styles.alarmNamePress}>{item.input}</Text> 
             <Text style={onOff ? styles.alarmTime : styles.alarmTimePress}>{item.alarmtimer}</Text> 
+            <TouchableOpacity style={onOff ? styles.onOffBtn : styles.onOffBtnPress} onPress={onBtnClick}>
+              <Text style={onOff ? styles.onOffText : styles.onOffTextPress}>
+                {onOff ? 'ON' : 'OFF'}
+              </Text>
+            </TouchableOpacity>
+            { toggle && <Icon name="close-circle-outline" color="red" size={30}></Icon>}
           </View>
-          <TouchableOpacity style={onOff ? styles.onOffBtn : styles.onOffBtnPress} onPress={onBtnClick}>
-            <Text style={onOff ? styles.onOffText : styles.onOffTextPress}>
-              {onOff ? 'ON' : 'OFF'}
-            </Text>
-          </TouchableOpacity>
-        </View>
+          
+          {/* { toggle && <Icon name="close-circle-outline" color="red" size={30}></Icon>} */}
+        {/* </View> */}
       </View>
     </View>
   )
@@ -47,7 +51,6 @@ const styles = StyleSheet.create({
   alarmContent:{
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '78%',
   },
   alarmName: {
     marginLeft: 20,
