@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import { useNavigation } from '@react-navigation/native';
@@ -7,38 +7,58 @@ import plus from '../../asset/plus.png';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const AlarmList = ({ navigation, route }) => {
+  console.log(route)
   const time = ['아침', '점심', '저녁', '취침 전'];
-  const [inputs, setInputs] = useState([]);
+  const [inputs, setInputs] = useState([
+    { alarmTitle: '감기약',
+      alarmTimer: '6:00', 
+      timeOption: selectedAddAlarm,
+      alarmIndex: 0,}
+  ]);
   const [selectOption, setSelectedOption] = useState('저녁');
   const [delTg, setDelTg] = useState(false);
   const [selectedAddAlarm, setSelectedAddAlarm] = useState();
   const [selectedIndex, setSelectedIndex] = useState();
   const [newList, setNewList] = useState([]);
 
+  const nextId = useRef(0);
+
   const setSelected = (selectedAddAlarm, selectedIndex) => {
     setSelectedAddAlarm(selectedAddAlarm)
     setSelectedIndex(selectedIndex)
     const newInputList = inputs.filter((newInput) => newInput.alarmIndex == selectedIndex);
     setNewList(newInputList)
-    console.log(newList)
+    //console.log(newList)
   }
 
   getInfoValue = (textInput, timer, selectedAddAlarm, selectedIndex) => {
     const input = {
+      cardIndex: nextId.current,
       alarmTitle: textInput,
       alarmTimer: timer, 
       timeOption: selectedAddAlarm,
       alarmIndex: selectedIndex,
     };
+    nextId.current += 1;
     setInputs(inputs.concat(input));
   };
 
   const delToggle = () => {
     setDelTg(!delTg)
   }
+
+  const deleteCard = (index, title) => {
+    console.log(index)
+    console.log(title)
+    const temp = [].concat(inputs);
+
+    const delCardList = temp.filter((cards) => cards.cardIndex !== index)
+    //console.log(delCardList)
+    setInputs(delCardList)
+  }
+  console.log(inputs)
   
   return (
-    
     <View style={styles.container}>
       <View style={styles.delIcon}>
         <Icon name="trash-outline" color={delTg ? 'red' : 'black'} size={30} onPress={delToggle} />
@@ -60,7 +80,7 @@ const AlarmList = ({ navigation, route }) => {
       </View>
       <View>
         { newList.map((inputItem, i)=>(
-          <AlarmCard key={i} item={inputItem} toggle={delTg} />
+          <AlarmCard key={i} item={inputItem} toggle={delTg} deleteCard={deleteCard}/>
         ))}
       </View>
       <View style={styles.btnAlign}>
