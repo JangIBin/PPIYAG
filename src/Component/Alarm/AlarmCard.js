@@ -12,14 +12,12 @@ const AlarmCard = ({ navi, item, toggle, deleteCard, getModifyValue }) => {
   }
 
   const delCard = () => {
-    //console.log(item.cardIndex)
     if(deleteCard){
       deleteCard(item.cardIndex, item.alarmTitle)
     }
   }
 
   getModifyInfo = (modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex) => {
-    //console.log(cardIndex)
     if(getModifyValue){
       getModifyValue(modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex, item.cardIndex)
     }
@@ -30,7 +28,7 @@ const AlarmCard = ({ navi, item, toggle, deleteCard, getModifyValue }) => {
       <View style={onOff ? styles.alarmView : styles.alarmViewPress}>
         {/* <View style={styles.align}> */}
           <View style={styles.alarmContent}>
-            <TouchableOpacity style={styles.contentText} onPress={()=> {navigation.navigate( 'ModifyAlarm', { alarmInfo: item }); getModifyInfo();}}>
+            <TouchableOpacity style={toggle ? styles.contentTextPress : styles.contentText} onPress={()=> {navigation.navigate( 'ModifyAlarm', { alarmInfo: item }); getModifyInfo();}}>
               <Text style={onOff ? styles.alarmName : styles.alarmNamePress}>{item.alarmTitle}</Text> 
               <Text style={onOff ? styles.alarmTime : styles.alarmTimePress}>{item.alarmTimer}</Text> 
             </TouchableOpacity>
@@ -39,7 +37,7 @@ const AlarmCard = ({ navi, item, toggle, deleteCard, getModifyValue }) => {
                 {onOff ? 'ON' : 'OFF'}
               </Text>
             </TouchableOpacity>
-            { toggle && <Icon name="close-circle-outline" color="red" size={30} onPress={delCard} />}
+            { toggle && <Icon style={toggle ? styles.celBtnPress : null} name="close-circle-outline" color="red" size={30} onPress={delCard} />}
           </View>
           {/* { toggle && <Icon name="close-circle-outline" color="red" size={30}></Icon>} */}
         {/* </View> */}
@@ -64,6 +62,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 15,
     justifyContent: 'center',
+    paddingRight: 15,
   },
   alarmContent:{
     flexDirection: 'row',
@@ -74,9 +73,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    //borderColor: 'red',
-    borderWidth: 1,
     height: 80,
+    width: '81%',
   },
   alarmName: {
     marginLeft: 20,
@@ -94,7 +92,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2d649',
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 15,
   },
   onOffText: {
     color: '#fff',
@@ -109,6 +106,13 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     justifyContent: 'center',
     backgroundColor: '#eee',
+  },
+  contentTextPress: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 80,
+    width: '71%',
   },
   alarmNamePress: {
     marginLeft: 20,

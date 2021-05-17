@@ -28,7 +28,6 @@ const AlarmList = ({ navigation, route }) => {
   //   }, []);
     
   const setSelected = (selectedAddAlarm, selectedIndex) => {
-    //console.log(selectedIndex)
     setSelectedAddAlarm(selectedAddAlarm)
     setSelectedIndex(selectedIndex)
     setSelectedOption(selectedAddAlarm)
@@ -53,20 +52,12 @@ const AlarmList = ({ navigation, route }) => {
   }
 
   const deleteCard = (index, title) => {
-    //const temp = [].concat(inputs);
     const delCardList = inputs.filter((cards) => cards.cardIndex !== index)
-    //console.log(delCardList)
     setInputs(delCardList)
   }
 
   const getModifyValue = (modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex, modifyCardIndex) => {
     console.log(modifyCardIndex)
-    //console.log(modifyTitle)
-    // const temp = [].concat(inputs);
-    // const newInputList = temp.map((input, index)=>{
-    //   input
-    //   //cardModifyIndex == index ? {...input, alarmTitle:modifyTitle, alarmTimer:modifyTimer, timeOption:modifyAddAlarm} : input
-    // })
     const newInputList = inputs.map((input)=> 
       input.cardIndex == modifyCardIndex ? 
         {
@@ -76,13 +67,10 @@ const AlarmList = ({ navigation, route }) => {
           timeOption: modifyAddAlarm,
           alarmIndex: modifyIndex,
         } : input
-      //input.cardIndex == modifyCardIndex
     );
-    //console.log(inputs)
     setInputs(newInputList)
-    console.log(newInputList)
   }
-  console.log(inputs)
+  //console.log(inputs)
   
   return (
     <View style={styles.container}>

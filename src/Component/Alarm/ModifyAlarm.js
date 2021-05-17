@@ -6,7 +6,7 @@ import moment from "moment";
 
 const ModifyAlarm = ({ navigation, route }) => {
   const { alarmTitle, alarmTimer, addAlarm, alarmIndex } = route.params.alarmInfo;
-  //console.log(alarmTimer)
+  const { getInfoValue } = route.params;
   const time = ['아침', '점심', '저녁', '취침 전'];
   const [show, setShow] = useState(false);
   const [modifyTimer, setModifyTimer] = useState(moment().format("a hh:mm"));
@@ -14,9 +14,6 @@ const ModifyAlarm = ({ navigation, route }) => {
   const [modifyAddAlarm, setModifyAddAlarm] = useState(alarmTimer);
   const [modifyIndex, setModifyIndex] = useState(alarmIndex);
   
-  const { getInfoValue } = route.params;
-  //console.log(alarmTimer);
-
   const setSelectedOption = (modifyAddAlarm, modifyIndex) => {
     setModifyAddAlarm(modifyAddAlarm)
     setModifyIndex(modifyIndex)
