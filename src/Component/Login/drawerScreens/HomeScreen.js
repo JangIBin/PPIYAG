@@ -1,15 +1,16 @@
 import React from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
 
 const HomeScreen = ({navigation}) => {
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={styles.body}>
       <View style={{flex: 1, padding: 16}}>
         <View
           style={{
             flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
+            position: 'relative',
           }}>
           <Text
             style={{
@@ -50,5 +51,12 @@ const HomeScreen = ({navigation}) => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  body: {
+    flex: 1,
+    backgroundColor:'#f2d649'
+  }
+})
 
 export default HomeScreen;

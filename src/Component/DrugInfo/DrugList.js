@@ -14,7 +14,7 @@ const DrugList = () => {
 
           setLoading(true);
           const response = await axios.get(
-            'http://192.168.0.252:3000/drugInfo'
+            'http://172.16.0.191:3000/drugInfo'
           );
           setDrugs(response.data.body.items); // 데이터는 response.data 안에 들어있습니다.
         } catch (e) {
@@ -38,8 +38,8 @@ const DrugList = () => {
     
     return (
         <View>
-          {drugs.map(drug => (
-            <Text key={drug.id}>{drug.entpName}</Text>
+          {drugs.map((drug, index) => (
+            <Text key={index}>{drug.itemName}</Text>
           ))}
         </View>
     )
