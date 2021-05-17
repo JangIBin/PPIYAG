@@ -10,10 +10,10 @@ const AlarmList = ({ navigation, route }) => {
   //console.log(route)
   const time = ['아침', '점심', '저녁', '취침 전'];
   const [inputs, setInputs] = useState([
-    { alarmTitle: '감기약',
-      alarmTimer: '6:00', 
-      timeOption: selectedAddAlarm,
-      alarmIndex: 0,}
+    // { alarmTitle: '감기약',
+    //   alarmTimer: '6:00', 
+    //   timeOption: selectedAddAlarm,
+    //   alarmIndex: '0',}
   ]);
   const [selectOption, setSelectedOption] = useState('저녁');
   const [delTg, setDelTg] = useState(false);
@@ -23,15 +23,17 @@ const AlarmList = ({ navigation, route }) => {
 
   const nextId = useRef(0);
 
-
+  // useEffect(() => {
+  //   console.log(inputs);
+  //   }, []);
+    
   const setSelected = (selectedAddAlarm, selectedIndex) => {
-    console.log(selectedIndex)
+    //console.log(selectedIndex)
     setSelectedAddAlarm(selectedAddAlarm)
     setSelectedIndex(selectedIndex)
     setSelectedOption(selectedAddAlarm)
-    const newInputList = inputs.filter((newInput) => newInput.alarmIndex == selectedIndex);
+    const newInputList = inputs.filter((newInput, index) => newInput.alarmIndex == selectedIndex);
     setNewList(newInputList)
-    
   }
 
   getInfoValue = (textInput, timer, selectedAddAlarm, selectedIndex) => {
@@ -51,23 +53,36 @@ const AlarmList = ({ navigation, route }) => {
   }
 
   const deleteCard = (index, title) => {
-    // console.log(index)
-    // console.log(title)
-    const temp = [].concat(inputs);
-    const delCardList = temp.filter((cards) => cards.cardIndex !== index)
+    //const temp = [].concat(inputs);
+    const delCardList = inputs.filter((cards) => cards.cardIndex !== index)
     //console.log(delCardList)
     setInputs(delCardList)
   }
 
-  // const getModifyValue = (modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex) => {
-  //   // console.log(modifyTitle)
-  //   const temp = [].concat(inputs);
-  //   const newInputList = inputs.map((input)=>{
-  //     modifyIndex == input.cardIndex ? {...input, alarmTitle:modifyTitle, alarmTimer:modifyTimer, timeOption:modifyAddAlarm} : input
-  //   })
-  //   console.log(newInputList)
-  // }
-  //console.log(inputs)
+  const getModifyValue = (modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex, modifyCardIndex) => {
+    console.log(modifyCardIndex)
+    //console.log(modifyTitle)
+    // const temp = [].concat(inputs);
+    // const newInputList = temp.map((input, index)=>{
+    //   input
+    //   //cardModifyIndex == index ? {...input, alarmTitle:modifyTitle, alarmTimer:modifyTimer, timeOption:modifyAddAlarm} : input
+    // })
+    const newInputList = inputs.map((input)=> 
+      input.cardIndex == modifyCardIndex ? 
+        {
+          cardIndex: modifyCardIndex,
+          alarmTitle: modifyTitle,
+          alarmTimer: modifyTimer, 
+          timeOption: modifyAddAlarm,
+          alarmIndex: modifyIndex,
+        } : input
+      //input.cardIndex == modifyCardIndex
+    );
+    //console.log(inputs)
+    setInputs(newInputList)
+    console.log(newInputList)
+  }
+  console.log(inputs)
   
   return (
     <View style={styles.container}>
@@ -92,7 +107,7 @@ const AlarmList = ({ navigation, route }) => {
       </View>
       <View>
         { newList.map((inputItem, i)=>(
-          <AlarmCard key={i} item={inputItem} toggle={delTg} deleteCard={deleteCard} />
+          <AlarmCard key={i} item={inputItem} toggle={delTg} deleteCard={deleteCard} getModifyValue={getModifyValue} />
         ))}
       </View>
       <View style={styles.btnAlign}>

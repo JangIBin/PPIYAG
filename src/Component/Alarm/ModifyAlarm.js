@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import moment from "moment";
 
-const AddAlarm = ({ navigation, route }) => {
+const ModifyAlarm = ({ navigation, route }) => {
+  const { alarmTitle, alarmTimer, addAlarm, alarmIndex } = route.params.alarmInfo;
+  //console.log(alarmTimer)
   const time = ['아침', '점심', '저녁', '취침 전'];
   const [show, setShow] = useState(false);
   const [modifyTimer, setModifyTimer] = useState(moment().format("a hh:mm"));
-  const [modifyTitle, setModifyTitle] = useState();
-  const [modifyAddAlarm, setModifyAddAlarm] = useState();
-  const [modifyIndex, setModifyIndex] = useState();
+  const [modifyTitle, setModifyTitle] = useState(alarmTitle);
+  const [modifyAddAlarm, setModifyAddAlarm] = useState(alarmTimer);
+  const [modifyIndex, setModifyIndex] = useState(alarmIndex);
   
   const { getInfoValue } = route.params;
-  const { alarmTitle, alarmTimer, alarmIndex, cardIndex } = route.params.alarmInfo;
-  console.log(alarmTimer);
+  //console.log(alarmTimer);
 
   const setSelectedOption = (modifyAddAlarm, modifyIndex) => {
     setModifyAddAlarm(modifyAddAlarm)
@@ -34,7 +35,7 @@ const AddAlarm = ({ navigation, route }) => {
 
   const sendModifyInfo = () => {
       if(getModifyInfo) {
-          //getModifyInfo(modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex)
+          getModifyInfo(modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex)
       }
   }
 
@@ -47,7 +48,7 @@ const AddAlarm = ({ navigation, route }) => {
     <View style={styles.container}>
       <View style={styles.inputView}>
         <Text style={styles.inputName}>알람 이름</Text>
-        <TextInput style={styles.inputMemo} value={alarmTitle} onChangeText={setModifyTitle} ></TextInput>
+        <TextInput style={styles.inputMemo} value={modifyTitle} onChangeText={setModifyTitle} ></TextInput>
       </View>
       <Text style={styles.timeText}>복용 시간</Text>
       <View style={styles.timeAlign}>
@@ -61,7 +62,7 @@ const AddAlarm = ({ navigation, route }) => {
             containerBorderTint={'#eee'}
             optionStyle={{fontWeight: 'bold'}}
             onSelection={setSelectedOption}  
-            selectedIndex={alarmIndex}
+            selectedIndex={modifyIndex}
             options={time}
           />
         </View>
@@ -69,7 +70,7 @@ const AddAlarm = ({ navigation, route }) => {
       <Text style={styles.timer}>시간 설정</Text>
       <View style={styles.timerAlign}>
         <View style={styles.timerView}> 
-          <Text style={styles.timerText}>{alarmTimer}</Text>
+          <Text style={styles.timerText}>{modifyTimer}</Text>
           <TouchableOpacity style={styles.timerBtn} onPress={showTimePicker}>
             <Text style={styles.timerBtnText}>시간 설정</Text>
           </TouchableOpacity>
@@ -197,5 +198,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddAlarm;
-
+export default ModifyAlarm;

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from 're
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const AlarmCard = ({ navi, item, toggle, deleteCard }) => {
+const AlarmCard = ({ navi, item, toggle, deleteCard, getModifyValue }) => {
   const navigation = useNavigation();
   const [onOff, setOnOff] = useState(true);
 
@@ -12,16 +12,16 @@ const AlarmCard = ({ navi, item, toggle, deleteCard }) => {
   }
 
   const delCard = () => {
-    console.log(item.cardIndex)
+    //console.log(item.cardIndex)
     if(deleteCard){
       deleteCard(item.cardIndex, item.alarmTitle)
     }
   }
 
-  getModifyInfo = () => {
-    console.log('modify')
+  getModifyInfo = (modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex) => {
+    //console.log(cardIndex)
     if(getModifyValue){
-      getModifyValue(modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex)
+      getModifyValue(modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex, item.cardIndex)
     }
   }
 
@@ -30,7 +30,7 @@ const AlarmCard = ({ navi, item, toggle, deleteCard }) => {
       <View style={onOff ? styles.alarmView : styles.alarmViewPress}>
         {/* <View style={styles.align}> */}
           <View style={styles.alarmContent}>
-            <TouchableOpacity style={styles.contentText} onPress={()=> {navigation.navigate( 'ModifyAlarm', { alarmInfo: item }); }}>
+            <TouchableOpacity style={styles.contentText} onPress={()=> {navigation.navigate( 'ModifyAlarm', { alarmInfo: item }); getModifyInfo();}}>
               <Text style={onOff ? styles.alarmName : styles.alarmNamePress}>{item.alarmTitle}</Text> 
               <Text style={onOff ? styles.alarmTime : styles.alarmTimePress}>{item.alarmTimer}</Text> 
             </TouchableOpacity>
