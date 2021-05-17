@@ -21,6 +21,7 @@ import MediMoreInfo from './src/Component/Map/MediMoreInfo';
 // Alarm
 import AlarmList from './src/Component/Alarm/AlarmList';
 import AddAlarm from './src/Component/Alarm/AddAlarm';
+import ModifyAlarm from './src/Component/Alarm/ModifyAlarm';
 
 const Stack = createStackNavigator();
 
@@ -78,10 +79,9 @@ const App = () => {
         <Stack.Screen name="MediMap" component={MediMap} />
         <Stack.Screen name="MediModal" component={MediModal} />
         <Stack.Screen name="MediMoreInfo" component={MediMoreInfo} />
-        <Stack.Screen 
-          name="AlarmList"
-          component={AlarmList} />
+        <Stack.Screen name="AlarmList" component={AlarmList} />
         <Stack.Screen name="AddAlarm" component={AddAlarm} />
+        <Stack.Screen name="ModifyAlarm" component={ModifyAlarm} />
       </Stack.Navigator>
         
     </NavigationContainer>

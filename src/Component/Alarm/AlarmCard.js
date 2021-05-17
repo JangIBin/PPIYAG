@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const AlarmCard = ({ navigation, item, toggle, deleteCard }) => {
+const AlarmCard = ({ navi, item, toggle, deleteCard }) => {
+  const navigation = useNavigation();
   const [onOff, setOnOff] = useState(true);
+
   const onBtnClick = () => {
     setOnOff(!onOff)
   }
@@ -12,7 +14,14 @@ const AlarmCard = ({ navigation, item, toggle, deleteCard }) => {
   const delCard = () => {
     console.log(item.cardIndex)
     if(deleteCard){
-      deleteCard(item.cardIndex, item.alarmTitle);
+      deleteCard(item.cardIndex, item.alarmTitle)
+    }
+  }
+
+  getModifyInfo = () => {
+    console.log('modify')
+    if(getModifyValue){
+      getModifyValue(modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex)
     }
   }
 
@@ -21,23 +30,16 @@ const AlarmCard = ({ navigation, item, toggle, deleteCard }) => {
       <View style={onOff ? styles.alarmView : styles.alarmViewPress}>
         {/* <View style={styles.align}> */}
           <View style={styles.alarmContent}>
-            <View style={styles.contentText}>
+            <TouchableOpacity style={styles.contentText} onPress={()=> {navigation.navigate( 'ModifyAlarm', { alarmInfo: item }); }}>
               <Text style={onOff ? styles.alarmName : styles.alarmNamePress}>{item.alarmTitle}</Text> 
               <Text style={onOff ? styles.alarmTime : styles.alarmTimePress}>{item.alarmTimer}</Text> 
-            </View>
+            </TouchableOpacity>
             <TouchableOpacity style={onOff ? styles.onOffBtn : styles.onOffBtnPress} onPress={onBtnClick}>
               <Text style={onOff ? styles.onOffText : styles.onOffTextPress}>
                 {onOff ? 'ON' : 'OFF'}
               </Text>
             </TouchableOpacity>
-            { toggle && 
-              <Icon name="close-circle-outline" color="red" size={30} 
-                onPress={delCard}
-              // onPress={() => {
-              //   navigation.navigate('AlarmList', delCard());
-              //   }}
-              />
-            }
+            { toggle && <Icon name="close-circle-outline" color="red" size={30} onPress={delCard} />}
           </View>
           {/* { toggle && <Icon name="close-circle-outline" color="red" size={30}></Icon>} */}
         {/* </View> */}
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderColor: 'red',
+    //borderColor: 'red',
     borderWidth: 1,
     height: 80,
   },
