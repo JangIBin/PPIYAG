@@ -15,25 +15,27 @@
       <img src="img/iconfinder_left-arrow-back_2931162.png" alt="">
     </a>
   </div>
+  <!-- <div class="map">
+    <div class="map_img">
+      <img src="img/location.png" alt="">
+    </div>
+  </div> -->
   <div class="popup">
     <div class="popup_wrap">
-      <div class="infoBox">
+      <a class="infoBox" href="location_info.html">
         <h2>약국 이름</h2>
         <p>경기 안양시 동안구 임곡로 29(비산동)</p>
         <p>031-467-4700</p>
-      </div>
+      </a>
       <button class="close"><img src="img/iconfinder_exit-delete-remove-close-x_2931151.png" alt=""></button>
-      </div>
-    </div>
-    <div>
-      <div class="map" id="map" style="width: 100%; height: 100vh; z-index: -1;"></div>
     </div>
   </div>
+  <!-- <div class="map" id="map" style="width: 100%; height: 100vh; z-index: -1;"></div> -->
 </body>
 
 
 <!-- 구글맵 -->
-<script>
+<!-- <script>
   function initMap() {
     const where =  {lat: -34.397, lng: 150.644};
     const map = new google.maps.Map(document.getElementById('map'), {
@@ -45,5 +47,5 @@
       position: {lat: 48.8583701, lng: 2.2944813}, map: map, icon: image
     });
   }
-</script>
+</script> -->
 </html>

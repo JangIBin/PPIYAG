@@ -45,7 +45,7 @@ const LoginScreen = ({navigation}) => {
     }
     formBody = formBody.join('&');
 
-    fetch('http://172.16.6.62:3000/api/user/login', {
+    fetch('http://word.yunholand.com:3000/api/user/login', {
       method: 'POST',
       body: formBody,
       headers: {
