@@ -35,7 +35,7 @@ const HomeScreen = ({navigation}) => {
               textAlign: 'center',
               color: 'black',
             }}
-            onPress={() => navigation.navigate('DrugList')} >
+            onPress={() => navigation.navigate('Drug')} >
             약 정보
           </Text>
         </View>
