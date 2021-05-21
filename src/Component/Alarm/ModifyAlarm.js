@@ -45,7 +45,7 @@ const ModifyAlarm = ({ navigation, route }) => {
     <View style={styles.container}>
       <View style={styles.inputView}>
         <Text style={styles.inputName}>알람 이름</Text>
-        <TextInput style={styles.inputMemo} value={modifyTitle} onChangeText={setModifyTitle} ></TextInput>
+        <TextInput style={styles.inputMemo} value={modifyTitle} onChangeText={(e) => setModifyTitle(e)} ></TextInput>
       </View>
       <Text style={styles.timeText}>복용 시간</Text>
       <View style={styles.timeAlign}>

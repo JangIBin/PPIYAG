@@ -10,7 +10,7 @@ const AddAlarm = ({ navigation, route }) => {
   const [timer, setTimer] = useState(moment().format("a hh:mm"));
   const [textInput, setTextInput] = useState();
   const [selectedAddAlarm, setSelectedAddAlarm] = useState();
-  const [selectedIndex, setSelectedIndex] = useState();
+  const [selectedIndex, setSelectedIndex] = useState(0);
   
   const { getInfoValue } = route.params;
 
@@ -60,6 +60,7 @@ const AddAlarm = ({ navigation, route }) => {
             optionStyle={{fontWeight: 'bold'}}
             onSelection = {setSelectedOption}  
             options={time}
+            selectedIndex={selectedIndex}
           />
         </View>
       </View>

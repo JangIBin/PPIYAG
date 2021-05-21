@@ -28,6 +28,15 @@ const HomeScreen = ({navigation}) => {
             onPress={() => navigation.navigate('MediMap')} >
             약국 위치 정보
           </Text>
+          <Text
+            style={{
+              fontSize: 16,
+              textAlign: 'center',
+              color: 'black',
+            }}
+            onPress={() => navigation.navigate('AlarmList')} >
+            알람 설정하기
+          </Text>
         </View>
         <Text
           style={{

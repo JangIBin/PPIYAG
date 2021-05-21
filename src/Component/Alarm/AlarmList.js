@@ -18,14 +18,18 @@ const AlarmList = ({ navigation, route }) => {
   const [selectOption, setSelectedOption] = useState('저녁');
   const [delTg, setDelTg] = useState(false);
   const [selectedAddAlarm, setSelectedAddAlarm] = useState();
-  const [selectedIndex, setSelectedIndex] = useState();
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [newList, setNewList] = useState([]);
 
   const nextId = useRef(0);
 
-  // useEffect(() => {
-  //   console.log(inputs);
-  //   }, []);
+  useEffect(() => {
+    setSelected();
+    console.log(inputs);
+    console.log(selectedIndex);
+    },[inputs]);
+
+    
     
   const setSelected = (selectedAddAlarm, selectedIndex) => {
     setSelectedAddAlarm(selectedAddAlarm)
@@ -70,7 +74,7 @@ const AlarmList = ({ navigation, route }) => {
     );
     setInputs(newInputList)
   }
-  //console.log(inputs)
+  console.log(inputs)
   
   return (
     <View style={styles.container}>
@@ -94,9 +98,22 @@ const AlarmList = ({ navigation, route }) => {
         </View>
       </View>
       <View>
-        { newList.map((inputItem, i)=>(
+        { inputs.map((inputItem, i)=>{
+          //console.log(inputItem)
+          // console.log(inputItem );
+          // switch(inputItem.alarmIndex) {
+          //   case 0:
+          //     <AlarmCard key={i} item={inputItem.alarmIndex == 0} toggle={delTg} deleteCard={deleteCard} getModifyValue={getModifyValue} />
+          //   case 1:
+          //     <AlarmCard key={i} item={inputItem.alarmIndex == 1} toggle={delTg} deleteCard={deleteCard} getModifyValue={getModifyValue} />
+          //   case 2:
+          //     <AlarmCard key={i} item={inputItem.alarmIndex == 2} toggle={delTg} deleteCard={deleteCard} getModifyValue={getModifyValue} />
+          //   case 3:
+          //     <AlarmCard key={i} item={inputItem.alarmIndex == 3} toggle={delTg} deleteCard={deleteCard} getModifyValue={getModifyValue} />
+          //   break;
+          // }
           <AlarmCard key={i} item={inputItem} toggle={delTg} deleteCard={deleteCard} getModifyValue={getModifyValue} />
-        ))}
+        })}
       </View>
       <View style={styles.btnAlign}>
         <TouchableOpacity style={styles.addBtnView} onPress={()=> {navigation.navigate( 'AddAlarm', { getInfoValue: getInfoValue }); }}>

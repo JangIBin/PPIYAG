@@ -19,7 +19,7 @@ async function requestPermission(){
     }
 }
 
-const MapEx = () => { 
+const MediMap = () => { 
     const [location, setLocation] = useState({latitude: 37.4040567, longitude: 126.9306283});
     const [pharmacys, setPharmacys] = useState([]);
     const [sendmodal, setSendModal] = useState([]);
@@ -105,4 +105,4 @@ const styles = StyleSheet.create({
         height: '100%'
     },
 });
-export default MapEx;
+export default MediMap;

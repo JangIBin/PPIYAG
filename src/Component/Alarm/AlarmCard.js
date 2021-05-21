@@ -106,13 +106,14 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     justifyContent: 'center',
     backgroundColor: '#eee',
+    paddingRight: 15,
   },
   contentTextPress: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 80,
-    width: '71%',
+    width: '81%',
   },
   alarmNamePress: {
     marginLeft: 20,
