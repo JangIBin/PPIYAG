@@ -51,7 +51,7 @@ const MediMoreInfo = ({ route }) => {
             </View>
             <View style={styles.contSat}>
               <Text style={styles.titleSat}>토요일</Text>
-              <Text style={styles.contentSat}>{SAT_BEGIN_TREAT_TM == null ? '0:00' : SAT_BEGIN_TREAT_TM} ~ {SAT_END_TREAT_TM == null ? '0:00' : SAT_END_TREAT_TM}</Text>
+              <Text style={styles.contentSat}>{SAT_BEGIN_TREAT_TM == null ? '휴무일' : SAT_BEGIN_TREAT_TM}{SAT_END_TREAT_TM == null ? '' : " ~ " + SAT_END_TREAT_TM}</Text>
             </View>
             <View style={styles.contSun}>
               <Text style={styles.titleSun}>일요일</Text>
