@@ -48,6 +48,7 @@ body{
   box-shadow: 0 -3px 5px 2px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   border-radius: 25px 25px 0 0;
+  z-index: 99;
 }
 
 .popup_wrap {
@@ -64,6 +65,7 @@ body{
 .infoBox h2 {
   font-size: 21px;
   margin-bottom: 7px;
+  color: #000;
 }
 
 .infoBox p {
@@ -84,4 +86,9 @@ button {
   width: 20px;
   height: 20px;
   display: block;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
 }

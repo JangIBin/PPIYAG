@@ -2,73 +2,9 @@ body {
   width: 100%;
   height: 100vh;
 }
-header {
-  background: #F2D649;
-  color: #fff;
-  width: 100%;
-  display: block;
-  height: 60px;
-  position: fixed;
-  z-index: 100;
-}
-
-.search {
-  position: relative;
-  /* width: 100%; */
-  padding: 6px;
-}
-.search_inner {
-  display: table;
-  width: 100%;
-}
-.search_box {
-  display: table-cell;
-  width: 100%;
-  background: #fff ;
-  border-radius: 25px;
-}
-.search_box_inner {
-  display: table;
-  width: 100%;
-}
-.search_input, .search_btn{
-  display: table-cell;
-  width: 100%;
-  vertical-align: top;
-}
-input {
-  width: 100%;
-  height: 44px;
-  border: none;
-  box-sizing: border-box;
-  padding: 0 12px;
-  font-size: 16px;
-  border-radius: 25px 0 0 25px;
-}
-button {
-  display: inline-block;
-  overflow: hidden;
-  position: relative;
-  height: 44px;
-  width: 44px;
-  line-height: 44px;
-  border: none;
-  background: transparent;
-  vertical-align: top;
-}
-button span {
-  position: absolute;
-  background-image: url(../img/search.png);
-  width: 32px;
-  height: 32px;
-  top: 6px;
-  right: 6px;
-  margin: auto;
-}
 
 .content {
   background: #fff;
-  top: 60px;
   position: relative;
 }
 .content_list {
@@ -76,21 +12,22 @@ button span {
   background: #eee;
   padding-top: 6px;
 }
-.medi_list {
+.fav_list {
   overflow: hidden;
   padding: 6px;
 }
-.medi {
+.fav_cnt {
   margin-bottom: 5px;
   border: 1px solid #e0e0e0;
   background: #fff;
   border-radius: 5px;
 }
-.medi>a {
+.fav_cnt>a {
   display: block;
   position: relative;
   padding: 15px;
   color: #000;
+  z-index: 10;
 }
 .medi_img {
   position: relative;
@@ -113,6 +50,7 @@ button span {
 }
 .medi_name {
   line-height: 1em;
+  width: 90%;
 }
 .medi_name span {
   font-weight: 500;
@@ -146,6 +84,8 @@ button span {
   font-size: 20px;
   right: 10px;
   top: 10px;
+  z-index: 111;
+  padding: 0 0 20px 20px;
 }
 .fav.active::before{
   content:'\f005';

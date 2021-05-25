@@ -2,21 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet} from 'react-native';
 
 const MediMoreInfo = ({ route }) => {
-  const { mediMore } = route.params;
+  const { INST_NM, REFINE_ROADNM_ADDR, REPRSNT_TELNO, MON_BEGIN_TREAT_TM, MON_END_TREAT_TM,
+          TUES_BEGIN_TREAT_TM, TUES_END_TREAT_TM, WED_BEGIN_TREAT_TM, WED_END_TREAT_TM,
+          THUR_BEGIN_TREAT_TM, THUR_END_TREAT_TM, FRI_BEGIN_TREAT_TM, FRI_END_TREAT_TM,
+          SAT_BEGIN_TREAT_TM, SAT_END_TREAT_TM } = route.params.mediMore.sendModal;
+
   return (
     <View style={styles.infoBg}>
       <View style={styles.mediTop}>
         <View style={styles.topTitle}>
-          <Text style={styles.mediTitle}>{JSON.stringify(mediMore.sendModal.INST_NM)}</Text>
+          <Text style={styles.mediTitle}>{INST_NM}</Text>
         </View>
         <View style={styles.mediTopContent}>
           <View style={styles.topContent}>
             <Text style={styles.title}>주소</Text>
-            <Text style={styles.content}>{JSON.stringify(mediMore.sendModal.REFINE_ROADNM_ADDR)}</Text>
+            <Text style={styles.content}>{REFINE_ROADNM_ADDR}</Text>
           </View>
           <View style={styles.topContent}>
             <Text style={styles.title}>전화</Text>
-            <Text style={styles.content}>{JSON.stringify(mediMore.sendModal.REPRSNT_TELNO)}</Text>
+            <Text style={styles.content}>{REPRSNT_TELNO}</Text>
           </View>
         </View>
       </View>
@@ -27,27 +31,27 @@ const MediMoreInfo = ({ route }) => {
             <Text style={styles.contTitle}>영업시간</Text>
             <View style={styles.contContent}>
               <Text style={styles.title}>월요일</Text>
-              <Text style={styles.content}>{JSON.stringify(mediMore.sendModal.MON_BEGIN_TREAT_TM)} ~ {JSON.stringify(mediMore.sendModal.MON_END_TREAT_TM)}</Text>
+              <Text style={styles.content}>{MON_BEGIN_TREAT_TM} ~ {MON_END_TREAT_TM}</Text>
             </View>
             <View style={styles.contContent}>
               <Text style={styles.title}>화요일</Text>
-              <Text style={styles.content}>{JSON.stringify(mediMore.sendModal.TUES_BEGIN_TREAT_TM)} ~ {JSON.stringify(mediMore.sendModal.TUES_END_TREAT_TM)}</Text>
+              <Text style={styles.content}>{TUES_BEGIN_TREAT_TM} ~ {TUES_END_TREAT_TM}</Text>
             </View>
             <View style={styles.contContent}>
               <Text style={styles.title}>수요일</Text>
-              <Text style={styles.content}>{JSON.stringify(mediMore.sendModal.WED_BEGIN_TREAT_TM)} ~ {JSON.stringify(mediMore.sendModal.WED_END_TREAT_TM)}</Text>
+              <Text style={styles.content}>{WED_BEGIN_TREAT_TM} ~ {WED_END_TREAT_TM}</Text>
             </View>
             <View style={styles.contContent}>
               <Text style={styles.title}>목요일</Text>
-              <Text style={styles.content}>{JSON.stringify(mediMore.sendModal.THUR_BEGIN_TREAT_TM)} ~ {JSON.stringify(mediMore.sendModal.THUR_END_TREAT_TM)}</Text>
+              <Text style={styles.content}>{THUR_BEGIN_TREAT_TM} ~ {THUR_END_TREAT_TM}</Text>
             </View>
             <View style={styles.contContent}>
               <Text style={styles.title}>금요일</Text>
-              <Text style={styles.content}>{JSON.stringify(mediMore.sendModal.FRI_BEGIN_TREAT_TM)} ~ {JSON.stringify(mediMore.sendModal.FRI_END_TREAT_TM)}</Text>
+              <Text style={styles.content}>{FRI_BEGIN_TREAT_TM} ~ {FRI_END_TREAT_TM}</Text>
             </View>
             <View style={styles.contSat}>
               <Text style={styles.titleSat}>토요일</Text>
-              <Text style={styles.contentSat}>{JSON.stringify(mediMore.sendModal.SAT_BEGIN_TREAT_TM)} ~ {JSON.stringify(mediMore.sendModal.SAT_END_TREAT_TM)}</Text>
+              <Text style={styles.contentSat}>{SAT_BEGIN_TREAT_TM == null ? '0:00' : SAT_BEGIN_TREAT_TM} ~ {SAT_END_TREAT_TM == null ? '0:00' : SAT_END_TREAT_TM}</Text>
             </View>
             <View style={styles.contSun}>
               <Text style={styles.titleSun}>일요일</Text>

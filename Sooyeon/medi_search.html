@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>삐약::약국정보</title>
+  <title>삐약::약 검색</title>
   <link rel="stylesheet" href="css/default.css">
   <link rel="stylesheet" href="css/medi_search.css">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -31,6 +31,52 @@
   <div class="content">
     <div class="content_list">
       <ul class="medi_list">
+        <li class="medi">
+          <a href="medi_detail.html">
+            <div class="medi_img">
+              <img src="img/medi_sample00.jpg" alt="">
+            </div>
+            <div class="medi_info">
+              <div class="medi_name">
+                <span>한미아스피린장용정100밀리그램</span>
+              </div>
+              <div class="medi_desc">
+                <span>
+                  1) 다음 질환에서 혈전 생성 억제
+              · 심근경색
+              · 뇌경색
+              · 불안정형 협심증
+              2) 관상동맥 우회술(CABG) 또는 경피경관 관상동맥 성형술(PTCA) 후 혈전 생성 억제
+              3) 고위험군환자(허혈성 심장질환의 가족력, 고혈압, 고콜레스테롤혈증, 비만, 당뇨 등 복합적 위험인자를 가진 환자)에서 심혈관계 위험성 감소
+                </span>
+              </div>
+              <span class="fav"></span>
+            </div>
+          </a>
+        </li>
+        <li class="medi">
+          <a href="#">
+            <div class="medi_img">
+              <img src="img/medi_sample00.jpg" alt="">
+            </div>
+            <div class="medi_info">
+              <div class="medi_name">
+                <span>한미아스피린장용정100밀리그램</span>
+              </div>
+              <div class="medi_desc">
+                <span>
+                  1) 다음 질환에서 혈전 생성 억제
+              · 심근경색
+              · 뇌경색
+              · 불안정형 협심증
+              2) 관상동맥 우회술(CABG) 또는 경피경관 관상동맥 성형술(PTCA) 후 혈전 생성 억제
+              3) 고위험군환자(허혈성 심장질환의 가족력, 고혈압, 고콜레스테롤혈증, 비만, 당뇨 등 복합적 위험인자를 가진 환자)에서 심혈관계 위험성 감소
+                </span>
+              </div>
+              <span class="fav"></span>
+            </div>
+          </a>
+        </li>
         <li class="medi">
           <a href="#">
             <div class="medi_img">
@@ -169,6 +215,7 @@
                   4. 공황장애
                   </span>
               </div>
+              <!-- 즐겨찾기 -->
               <span class="fav"></span>
             </div>
           </a>
@@ -176,6 +223,29 @@
       </ul>
     </div>
   </div>
+
+  <!-- 상단버튼 -->
+  <a href="#" class="go_top"></a>
+
+  <!-- gpo_top -->
+  <script>
+    $(document).ready( function() {
+        $(window).scroll(
+            function() {
+                if ( $( this ).scrollTop() > 50 ) {
+                    $( '.go_top' ).fadeIn();
+                    } else {
+                        $( '.go_top' ).fadeOut();
+                    }
+                }
+            );
+        $('.go_top').click( function() {
+            $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+            return false;
+            }
+        );
+    } );
+  </script>
 
   <!-- 즐겨찾기 -->
   <script>

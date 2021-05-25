@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, Modal, TouchableOpacity } from 'react-native';
-import MediMoreInfo from './MediMoreInfo';
 import { useNavigation } from '@react-navigation/native';
-import exit from "../../asset/exit.png";
+import exit from '../../asset/exit.png';
 
 const MediModal = ({showModal, toggleModal, sendModal}) => {
   const navigation = useNavigation(); 
-  console.log(showModal);
   return (
     <View style={styles.container}>
       <Modal visible={showModal} transparent={true}>
@@ -43,13 +41,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     marginTop: 640,
     shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.9,
-    shadowRadius: 12,
-    elevation: 20,
+    elevation: 5,
   },
   align: {
     flexDirection: 'row',

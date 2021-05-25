@@ -6,6 +6,211 @@ body {
   background: #f2d649;
 }
 
+/* Trigger Button */
+input[id=trigger]{  
+  display: none;
+}
+
+label[for=trigger]{
+  width: 35px;
+  height: 38px;
+  display: block; 
+  position: absolute;
+  cursor: pointer;
+  /* right: 20px; */
+  right: 0;
+  top: 20px;
+  transition: 0.5s;
+  z-index: 300;
+  margin-right: 10px;
+}
+
+label[for=trigger] span{
+  position: absolute;
+  height: 2px;
+  background-color: #000;
+  width: 100%;
+  left: 0;
+  transition: 0.5s;
+  display: none;
+}
+
+label[for=trigger] div {
+  position: relative;
+}
+
+label[for=trigger] div img {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 201;
+  right: 0;
+}
+
+label[for=trigger] span:nth-child(1){
+  top: 0;
+  display: 0;
+}
+
+label[for=trigger] span:nth-child(2){
+  top: 50%;
+  display: none;
+}
+
+label[for=trigger] span:nth-child(3){
+  top: 100%;
+  display: none;
+}
+
+input[id=trigger]:checked + label[for=trigger] span:nth-child(1){
+  top: 50%; 
+  transform: rotate(45deg);
+  display: block;
+}
+input[id=trigger]:checked + label[for=trigger] span:nth-child(2){
+  opacity: 0;
+  display: block;
+}
+input[id=trigger]:checked + label[for=trigger] span:nth-child(3){
+  top: 50%;
+  transform: rotate(-45deg);
+  display: block;
+}
+input[id=trigger]:checked + label[for=trigger] div img {
+  display: none;
+}
+
+input[id=trigger]:checked ~ .sidebar {
+  right: 0;
+}
+
+input[id=trigger]:checked + label[for=trigger]{
+  /* right: 300px; */
+  right: 0;
+}
+
+
+/* sidebar */
+.sidebar{
+  background-color: #f5f5f5;
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  right: -300px;
+  transition: 0.5s;
+  z-index: 200;
+  box-shadow: 0 0px 5px 2px rgba(0, 0, 0, 0.15);
+  padding-top: 60px;
+  box-sizing: border-box;
+}
+
+.sidebar .user {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 15px 30px;
+  box-sizing: border-box;
+}
+.user_inner {
+  height: 50px;
+  display: block;
+}
+.sidebar .user_img {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin-right: 7px;
+}
+.user_img img {
+  width: 50px;
+  height: 50px;
+}
+.sidebar .user span{
+  font-size: 16px;
+  display: inline-block;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.sidebar .user span strong {
+  font-size: 21px;
+}
+
+.sidebar .fav, .sidebar .med_count, .sidebar .setting {
+  position: relative;
+  display: block;
+  background: #fff;
+  box-shadow: 0 0px 7px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  margin: 12px 15px;
+}
+.sidebar .fav a,
+.sidebar .setting a {
+  color: #000;
+  position: relative;
+  display: block;
+  padding: 15px 25px;
+  line-height: 20px;
+}
+.fav_inner,
+.setting_inner {
+  line-height: 20px;
+}
+.fav a div,
+.setting a div,
+.logout div{
+  display: inline-block;
+  vertical-align: middle;
+}
+.fav a div img,
+.setting a div img,
+.logout div img{
+  height: 20px;
+}
+.fav a span,
+.setting a span,
+.logout span {
+  margin-left: 15px;
+  display: inline-block;
+  font-size: 16px;
+  vertical-align: middle;
+}
+.sidebar .med_count {
+  padding: 15px 30px;
+}
+.med_count_inner {
+  text-align: center;
+}
+.med_count_inner strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 36px;
+  color: #f2d649;
+}
+
+.logout {
+  position: absolute;
+  display: block;
+  bottom: 12px;
+  right: 20px;
+  cursor: pointer;
+}
+.logout_inner {
+  line-height: 20px;
+}
+.logout_img img {
+  opacity: 0.75;
+}
+.logout span {
+  margin-left: 2px;
+  font-size: 16px;
+  color: #767676;
+  margin-bottom: 3px;
+}
+
+
 header {
   position: relative;
   display: block;

@@ -13,7 +13,7 @@ import LoginScreen from './src/Component/Login/LoginScreen';
 import RegisterScreen from './src/Component/Login/RegisterScreen';
 import DrawerNavigationRoutes from './src/Component/Login/DrawerNavigatorRoutes';
 
-//MediMap
+// MediMap
 import MediMap from './src/Component/Map/MediMap';
 import MediModal from './src/Component/Map/MediModal';
 import MediMoreInfo from './src/Component/Map/MediMoreInfo';
@@ -21,12 +21,17 @@ import MediMoreInfo from './src/Component/Map/MediMoreInfo';
 //DrugInfo
 import Drug from './src/Component/DrugInfo/Drug';
 
+// Alarm
+import AlarmList from './src/Component/Alarm/AlarmList';
+import AddAlarm from './src/Component/Alarm/AddAlarm';
+import ModifyAlarm from './src/Component/Alarm/ModifyAlarm';
+
 const Stack = createStackNavigator();
 
 const Auth = () => {
   // Stack Navigator for Login and Sign up Screen
   return (
-    <Stack.Navigator initialRouteName="LoginScreen">
+    <Stack.Navigator initialRouteName="SplashScreen">
       <Stack.Screen
         name="LoginScreen"
         component={LoginScreen}
@@ -77,8 +82,12 @@ const App = () => {
         <Stack.Screen name="MediMap" component={MediMap} />
         <Stack.Screen name="MediModal" component={MediModal} />
         <Stack.Screen name="MediMoreInfo" component={MediMoreInfo} />
+
         <Stack.Screen name="Drug" component={Drug} />
         
+        <Stack.Screen name="AlarmList" component={AlarmList} />
+        <Stack.Screen name="AddAlarm" component={AddAlarm} />
+        <Stack.Screen name="ModifyAlarm" component={ModifyAlarm} />
       </Stack.Navigator>
         
     </NavigationContainer>

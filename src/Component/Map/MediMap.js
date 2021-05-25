@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"; 
-import { PermissionsAndroid, Platform, View, Text, StyleSheet } from "react-native"; 
+import { PermissionsAndroid, Platform, View, StyleSheet } from "react-native"; 
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps"; 
 import Geolocation from 'react-native-geolocation-service';
 import axios from "axios";
@@ -19,7 +19,7 @@ async function requestPermission(){
     }
 }
 
-const MapEx = () => { 
+const MediMap = () => { 
     const [location, setLocation] = useState({latitude: 37.4040567, longitude: 126.9306283});
     const [pharmacys, setPharmacys] = useState([]);
     const [sendmodal, setSendModal] = useState([]);
@@ -87,8 +87,8 @@ const MapEx = () => {
                             setModalVisible(true);
                             setSendModal(pharmacy);
                         }}
+                        style={{elevation: 2,}}
                     >
-                        <Text>Medi</Text>
                     </Marker>
                 ))}
             </MapView>
@@ -105,4 +105,4 @@ const styles = StyleSheet.create({
         height: '100%'
     },
 });
-export default MapEx;
+export default MediMap;
