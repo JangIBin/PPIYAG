@@ -29,16 +29,6 @@ const Drug = () => {
         setLoading(false);
       };
 
-      // const drugSearch = (e) => {
-      //   let value = e.target.value.toLowerCase ();
-      //   let result = [];
-      //   console.log (값);
-      //   result = allData.filter ((drug) => {
-      //     return drug.itemName.search (value) != -1;
-      //   });
-      //   setFilterData (result);
-      // }
-
       const drugSearch = (drug) => {
 
         if (drug) {
@@ -75,7 +65,6 @@ const Drug = () => {
     return (                                                                                                                                                                                   
         <View>
             <TextInput name="Serach" placeholder="Search" onChangeText={(drug) => drugSearch(drug) } value={input} />
-
             <DrugList keyExtractor={(drugs, index) => index.toString()} filterData={filterData} />
         </View>
         

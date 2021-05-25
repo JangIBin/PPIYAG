@@ -20,12 +20,12 @@ const homeScreenStack = ({navigation}) => {
         name="HomeScreen"
         component={HomeScreen}
         options={{
-          title: 'Home', //Set Header Title
+          title: null, //Set Header Title
           headerLeft: () => (
             <NavigationDrawerHeader navigationProps={navigation} />
           ),
           headerStyle: {
-            backgroundColor: 'white', //Set Header color
+            backgroundColor: '#f2d649', //Set Header color
           },
           headerTintColor: 'black', //Set Header text color
           headerTitleStyle: {
