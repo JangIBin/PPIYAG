@@ -12,4 +12,9 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "ppiyag";
   }
+
+  // @Override
+  // public void onNewIntent(Intent intent) {
+  //   super.onNewIntent(intent);
+  // }
 }

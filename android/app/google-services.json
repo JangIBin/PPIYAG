@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "600881838444",
+    "project_id": "ppiyagalarm-40247",
+    "storage_bucket": "ppiyagalarm-40247.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600881838444:android:2530e8f09af42fdc51db49",
+        "android_client_info": {
+          "package_name": "com.ppiyag"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600881838444-qgck7m5b3p015a9plmlfse4eaiop6drp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ppiyag",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "600881838444-vci4t7fug21okjutrs9jmb9u2aq8tu2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBghi-Uv_IB9_L3ojz20qFPTf35WXhVcFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600881838444-vci4t7fug21okjutrs9jmb9u2aq8tu2c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
