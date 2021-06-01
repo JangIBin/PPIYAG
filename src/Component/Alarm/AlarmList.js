@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { View, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import { useNavigation } from '@react-navigation/native';
+import PushNotification from "react-native-push-notification";
 import AlarmCard from './AlarmCard';
 import plus from '../../asset/plus.png';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -23,10 +24,19 @@ const AlarmList = ({ navigation, route }) => {
 
   const nextId = useRef(0);
 
+
   useEffect(() => {
     // console.log(inputs);
     // console.log(selectedIndex);
   },[inputs, selectedAddAlarm]);
+
+  PushNotification.createChannel(
+    {
+      channelId: 'app.ppiyag', // (required)
+      channelName: 'app.ppiyag', // (required)
+    },
+    (created) => console.log(`createChannel returned '${created}'`), // (optional) callback returns whether the channel was created, false means it already existed.
+  );
     
   const setSelected = (selectedAddAlarm, selectedIndex) => {
     setSelectedAddAlarm(selectedAddAlarm)
@@ -37,6 +47,14 @@ const AlarmList = ({ navigation, route }) => {
   }
 
   getInfoValue = (textInput, timer, selectedAddAlarm, selectedIndex) => {
+    PushNotification.localNotificationSchedule({
+      id : nextId.current,
+      channelId : "app.ppiyag" ,
+      date: new Date(Date.now() + 10 * 1000), // in 60 secs
+      title : "PPIYAG" ,  // (선택 사항) 
+      message : textInput,  // (필수) 
+      repeatType : "day",
+    });
     const input = {
       cardIndex: nextId.current,
       alarmTitle: textInput,
@@ -46,6 +64,7 @@ const AlarmList = ({ navigation, route }) => {
     };
     nextId.current += 1;
     setInputs(inputs.concat(input));
+    console.log(timer);
   };
 
   const delToggle = () => {
@@ -71,6 +90,7 @@ const AlarmList = ({ navigation, route }) => {
     );
     setInputs(newInputList)
   }
+  console.log(Date.now());
   
   return (
     <View style={styles.container}>

@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     height: 170,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    marginTop: 640,
+    marginTop: 570,
     shadowColor: "#000000",
     elevation: 5,
   },

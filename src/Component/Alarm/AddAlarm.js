@@ -27,6 +27,7 @@ const AddAlarm = ({ navigation, route }) => {
     if (date !== undefined) {
       setTimer(moment(date).format("a hh:mm"))
     }
+    //console.log(date.)
     setShow(false)
   }
 
@@ -40,6 +41,8 @@ const AddAlarm = ({ navigation, route }) => {
   //   setTime(time)
   // },[])
   //console.log(newAlarm);
+
+  console.log(timer)
 
   return (
     <View style={styles.container}>
@@ -180,8 +183,6 @@ const styles = StyleSheet.create({
   },
   btnView: {
     flexDirection: 'column',
-    justifyContent: 'flex-end',
-    marginBottom: 40,
   },
   addBtn: {
     backgroundColor: '#f2d649',
@@ -191,7 +192,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 2,
-    marginTop: 270,
+    marginTop: 210,
   },
 });
 
