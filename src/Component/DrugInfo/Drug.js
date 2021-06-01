@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
 import axios from "axios";
 
 import DrugList from './DrugList';
 
-const Drug = () => {
+const Drug = ({navigation}) => {
     const [drugs, setDrugs] = useState([]);
     const [filterData, setFilterData] = useState(drugs);
 
@@ -64,11 +64,31 @@ const Drug = () => {
 
     return (                                                                                                                                                                                   
         <View>
-            <TextInput name="Serach" placeholder="Search" onChangeText={(drug) => drugSearch(drug) } value={input} />
-            <DrugList keyExtractor={(drugs, index) => index.toString()} filterData={filterData} />
+          <View style={styles.search}>
+            <TextInput 
+              name="Serach" 
+              placeholder="Search" 
+              onChangeText={(drug) => drugSearch(drug) } 
+              value={input} 
+              style={styles.search_inner}  
+            />
+          </View>
+            {/* <TextInput name="Serach" placeholder="Search" onChangeText={(drug) => drugSearch(drug) } value={input} /> */}
+            <DrugList keyExtractor={(drugs, index) => index.toString()} filterData={filterData} navigation={navigation} />
         </View>
         
     )
 }
+
+const styles = StyleSheet.create({
+  search: {
+    padding: 6,
+    backgroundColor: '#F2D649',
+  },
+  search_inner: {
+    backgroundColor: 'white',
+    borderRadius: 25,
+  }
+});
 
 export default Drug;

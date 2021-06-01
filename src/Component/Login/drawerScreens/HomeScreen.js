@@ -27,7 +27,9 @@ const HomeScreen = ({navigation}) => {
             />
             <Text style={styles.imageText}>약국 위치 검색</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.alarm}>
+          <TouchableOpacity 
+            style={styles.alarm}
+            onPress={() => navigation.navigate('AlarmList')}>
             <Image 
               style={{width: '100%', height: '50%', resizeMode:'contain'}}
               source={require('../../../asset/checklist.png')}
@@ -86,6 +88,14 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     justifyContent: 'center',
     top: 62,
+    shadowColor: 'gray',
+    shadowOffset: {
+      width: 0,
+      height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.00,
+    elevation: 24,
   },
   alarm: {
     width: '48%',
@@ -94,7 +104,15 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     justifyContent: 'center',
     left: 182,
-    bottom: 42
+    bottom: 42,
+    shadowColor: 'gray',
+    shadowOffset: {
+      width: 0,
+      height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.00,
+    elevation: 24,
   },
   imageText: {
     paddingTop: 7,
