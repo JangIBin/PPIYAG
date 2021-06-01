@@ -9,6 +9,8 @@ const AddAlarm = ({ navigation, route }) => {
   const [show, setShow] = useState(false);
   const [timer, setTimer] = useState(moment().format("a hh:mm"));
   const [textInput, setTextInput] = useState();
+  const [timeNow, setTimeNow] = useState(0);
+  const [pickTime, setPickTime] = useState(0);
   const [selectedAddAlarm, setSelectedAddAlarm] = useState();
   const [selectedIndex, setSelectedIndex] = useState(0);
   
@@ -29,20 +31,15 @@ const AddAlarm = ({ navigation, route }) => {
     }
     //console.log(date.)
     setShow(false)
+    setPickTime(date.getTime())
+    setTimeNow(new Date().getTime())
   }
 
   const sendInfo = () => {
     if(getInfoValue) {
-      getInfoValue(textInput, timer, selectedAddAlarm, selectedIndex);
+      getInfoValue(textInput, timer, selectedAddAlarm, selectedIndex, timeNow, pickTime);
     }
   }
-
-  // useEffect(()=> {
-  //   setTime(time)
-  // },[])
-  //console.log(newAlarm);
-
-  console.log(timer)
 
   return (
     <View style={styles.container}>
@@ -197,4 +194,3 @@ const styles = StyleSheet.create({
 });
 
 export default AddAlarm;
-

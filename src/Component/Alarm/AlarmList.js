@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import PushNotification from "react-native-push-notification";
 import AlarmCard from './AlarmCard';
 import plus from '../../asset/plus.png';
+import ppiyagIcon from '../../asset/ppiyag_icon.png';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const AlarmList = ({ navigation, route }) => {
@@ -46,13 +47,17 @@ const AlarmList = ({ navigation, route }) => {
     setNewList(newInputList)
   }
 
-  getInfoValue = (textInput, timer, selectedAddAlarm, selectedIndex) => {
+  getInfoValue = (textInput, timer, selectedAddAlarm, selectedIndex, timeNow, pickTime) => {
+    //console.log(timeNow)
+    console.log(pickTime - timeNow)
+    console.log(pickTime)
+    console.log(Date.now())
     PushNotification.localNotificationSchedule({
       id : nextId.current,
       channelId : "app.ppiyag" ,
-      date: new Date(Date.now() + 10 * 1000), // in 60 secs
-      title : "PPIYAG" ,  // (선택 사항) 
-      message : textInput,  // (필수) 
+      date: new Date(Date.now() + (pickTime - timeNow)), // in 60 secs
+      title : "PPIYAG" ,  
+      message : textInput,  
       repeatType : "day",
     });
     const input = {
@@ -64,7 +69,6 @@ const AlarmList = ({ navigation, route }) => {
     };
     nextId.current += 1;
     setInputs(inputs.concat(input));
-    console.log(timer);
   };
 
   const delToggle = () => {
@@ -77,7 +81,6 @@ const AlarmList = ({ navigation, route }) => {
   }
 
   const getModifyValue = (modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex, modifyCardIndex) => {
-    console.log(modifyCardIndex)
     const newInputList = inputs.map((input)=> 
       input.cardIndex == modifyCardIndex ? 
         {
@@ -90,7 +93,6 @@ const AlarmList = ({ navigation, route }) => {
     );
     setInputs(newInputList)
   }
-  console.log(Date.now());
   
   return (
     <View style={styles.container}>
@@ -174,6 +176,3 @@ const styles = StyleSheet.create({
 });
 
 export default AlarmList;
-
-
-
