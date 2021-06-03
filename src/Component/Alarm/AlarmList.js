@@ -3,20 +3,15 @@ import { View, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import { useNavigation } from '@react-navigation/native';
 import PushNotification from "react-native-push-notification";
+import AsyncStorage from '@react-native-community/async-storage';
 import AlarmCard from './AlarmCard';
 import plus from '../../asset/plus.png';
 import ppiyagIcon from '../../asset/ppiyag_icon.png';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const AlarmList = ({ navigation, route }) => {
-  //console.log(route)
   const time = ['아침', '점심', '저녁', '취침 전'];
-  const [inputs, setInputs] = useState([
-    // { alarmTitle: '감기약',
-    //   alarmTimer: '6:00', 
-    //   timeOption: selectedAddAlarm,
-    //   alarmIndex: '0',}
-  ]);
+  const [inputs, setInputs] = useState([]);
   const [selectOption, setSelectedOption] = useState('저녁');
   const [delTg, setDelTg] = useState(false);
   const [selectedAddAlarm, setSelectedAddAlarm] = useState('아침');
@@ -25,18 +20,26 @@ const AlarmList = ({ navigation, route }) => {
 
   const nextId = useRef(0);
 
-
   useEffect(() => {
     // console.log(inputs);
     // console.log(selectedIndex);
   },[inputs, selectedAddAlarm]);
 
+  useEffect(() => {
+    //initData();
+    AsyncStorage.getItem('inputs').then((inputs)=> {
+      if( inputs != null){
+          setInputs(JSON.parse(inputs));
+      }
+    });
+  },[]);
+
   PushNotification.createChannel(
     {
-      channelId: 'app.ppiyag', // (required)
-      channelName: 'app.ppiyag', // (required)
+      channelId: 'app.ppiyag', 
+      channelName: 'app.ppiyag', 
     },
-    (created) => console.log(`createChannel returned '${created}'`), // (optional) callback returns whether the channel was created, false means it already existed.
+    (created) => console.log(`createChannel returned '${created}'`),
   );
     
   const setSelected = (selectedAddAlarm, selectedIndex) => {
@@ -48,14 +51,10 @@ const AlarmList = ({ navigation, route }) => {
   }
 
   getInfoValue = (textInput, timer, selectedAddAlarm, selectedIndex, timeNow, pickTime) => {
-    //console.log(timeNow)
-    console.log(pickTime - timeNow)
-    console.log(pickTime)
-    console.log(Date.now())
     PushNotification.localNotificationSchedule({
       id : nextId.current,
       channelId : "app.ppiyag" ,
-      date: new Date(Date.now() + (pickTime - timeNow)), // in 60 secs
+      date: new Date(Date.now() + (pickTime - timeNow)),
       title : "PPIYAG" ,  
       message : textInput,  
       repeatType : "day",
@@ -68,16 +67,22 @@ const AlarmList = ({ navigation, route }) => {
       alarmIndex: selectedIndex,
     };
     nextId.current += 1;
-    setInputs(inputs.concat(input));
+    const newList = inputs.concat(input);
+    setInputs(newList);
+    AsyncStorage.setItem('inputs', JSON.stringify(newList),() => console.log('저장'));
   };
+  console.log(inputs)
+  console.log(nextId)
 
   const delToggle = () => {
     setDelTg(!delTg)
   }
 
   const deleteCard = (index, title) => {
+    PushNotification.removeDeliveredNotifications({id: index});
     const delCardList = inputs.filter((cards) => cards.cardIndex !== index)
     setInputs(delCardList)
+    AsyncStorage.setItem('inputs', JSON.stringify(delCardList),() => console.log('삭제'));
   }
 
   const getModifyValue = (modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex, modifyCardIndex) => {
@@ -92,6 +97,7 @@ const AlarmList = ({ navigation, route }) => {
         } : input
     );
     setInputs(newInputList)
+    AsyncStorage.setItem('inputs', JSON.stringify(newInputList),() => console.log('수정'));
   }
   
   return (
@@ -118,7 +124,7 @@ const AlarmList = ({ navigation, route }) => {
       <View>
         { inputs.map((inputItem, i)=>{
           if(inputItem.timeOption == selectedAddAlarm){
-            return <AlarmCard key={i} item={inputItem} toggle={delTg} deleteCard={deleteCard} getModifyValue={getModifyValue} />
+            return <AlarmCard key={i} index={i} item={inputItem} toggle={delTg} deleteCard={deleteCard} getModifyValue={getModifyValue} />
           }
         })}
       </View>

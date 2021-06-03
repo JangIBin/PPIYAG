@@ -2,13 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import PushNotification from "react-native-push-notification";
+import AsyncStorage from '@react-native-community/async-storage';
 
-const AlarmCard = ({ navi, item, toggle, deleteCard, getModifyValue }) => {
+const AlarmCard = ({ navi, index, item, toggle, deleteCard, getModifyValue }) => {
   const navigation = useNavigation();
   const [onOff, setOnOff] = useState(true);
 
   const onBtnClick = () => {
     setOnOff(!onOff)
+    if(onOff == false){
+      PushNotification.cancelLocalNotifications({id: index});
+    }
   }
 
   const delCard = () => {
@@ -113,7 +118,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 80,
-    width: '81%',
+    width: '75%',
+    marginRight: 10,
   },
   alarmNamePress: {
     marginLeft: 20,
@@ -137,6 +143,9 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 20,
   },
+  celBtnPress: {
+    marginLeft: 8,
+  }
 });
 
 export default AlarmCard;

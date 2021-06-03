@@ -29,7 +29,6 @@ const AddAlarm = ({ navigation, route }) => {
     if (date !== undefined) {
       setTimer(moment(date).format("a hh:mm"))
     }
-    //console.log(date.)
     setShow(false)
     setPickTime(date.getTime())
     setTimeNow(new Date().getTime())
