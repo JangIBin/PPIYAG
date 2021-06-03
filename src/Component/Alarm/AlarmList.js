@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const AlarmList = ({ navigation, route }) => {
   const time = ['아침', '점심', '저녁', '취침 전'];
   const [inputs, setInputs] = useState([]);
-  const [selectOption, setSelectedOption] = useState('저녁');
+  const [selectOption, setSelectedOption] = useState('아침');
   const [delTg, setDelTg] = useState(false);
   const [selectedAddAlarm, setSelectedAddAlarm] = useState('아침');
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -26,10 +26,9 @@ const AlarmList = ({ navigation, route }) => {
   },[inputs, selectedAddAlarm]);
 
   useEffect(() => {
-    //initData();
     AsyncStorage.getItem('inputs').then((inputs)=> {
-      if( inputs != null){
-          setInputs(JSON.parse(inputs));
+      if( inputs !== null ){
+        setInputs(JSON.parse(inputs));
       }
     });
   },[]);
@@ -51,6 +50,11 @@ const AlarmList = ({ navigation, route }) => {
   }
 
   getInfoValue = (textInput, timer, selectedAddAlarm, selectedIndex, timeNow, pickTime) => {
+    inputs.map((items) => {
+      if(items.cardIndex == nextId.current){
+        nextId.current += 1
+      }
+    });
     PushNotification.localNotificationSchedule({
       id : nextId.current,
       channelId : "app.ppiyag" ,
@@ -68,8 +72,11 @@ const AlarmList = ({ navigation, route }) => {
     };
     nextId.current += 1;
     const newList = inputs.concat(input);
+    newList.sort((prevTimer, nextTiemr) => { 
+      return prevTimer.alarmTimer < nextTiemr.alarmTimer ? -1 : prevTimer.alarmTimer > nextTiemr.alarmTimer ? 1 : 0;  
+    });
     setInputs(newList);
-    AsyncStorage.setItem('inputs', JSON.stringify(newList),() => console.log('저장'));
+    AsyncStorage.setItem('inputs', JSON.stringify(newList));
   };
   console.log(inputs)
   console.log(nextId)
@@ -79,10 +86,10 @@ const AlarmList = ({ navigation, route }) => {
   }
 
   const deleteCard = (index, title) => {
-    PushNotification.removeDeliveredNotifications({id: index});
+    //PushNotification.removeDeliveredNotifications({id: index});
     const delCardList = inputs.filter((cards) => cards.cardIndex !== index)
     setInputs(delCardList)
-    AsyncStorage.setItem('inputs', JSON.stringify(delCardList),() => console.log('삭제'));
+    AsyncStorage.setItem('inputs', JSON.stringify(delCardList));
   }
 
   const getModifyValue = (modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex, modifyCardIndex) => {
@@ -97,7 +104,7 @@ const AlarmList = ({ navigation, route }) => {
         } : input
     );
     setInputs(newInputList)
-    AsyncStorage.setItem('inputs', JSON.stringify(newInputList),() => console.log('수정'));
+    AsyncStorage.setItem('inputs', JSON.stringify(newInputList));
   }
   
   return (
@@ -124,7 +131,7 @@ const AlarmList = ({ navigation, route }) => {
       <View>
         { inputs.map((inputItem, i)=>{
           if(inputItem.timeOption == selectedAddAlarm){
-            return <AlarmCard key={i} index={i} item={inputItem} toggle={delTg} deleteCard={deleteCard} getModifyValue={getModifyValue} />
+            return <AlarmCard key={i} item={inputItem} toggle={delTg} deleteCard={deleteCard} getModifyValue={getModifyValue} />
           }
         })}
       </View>
