@@ -178,7 +178,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   btnView: {
-    flexDirection: 'column',
+    flexDirection: 'column-reverse',
+    height: '38%',
   },
   addBtn: {
     backgroundColor: '#f2d649',
@@ -188,7 +189,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 2,
-    marginTop: 210,
+    //marginTop: 150,
   },
 });
 

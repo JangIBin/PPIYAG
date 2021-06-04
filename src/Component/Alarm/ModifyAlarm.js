@@ -13,6 +13,8 @@ const ModifyAlarm = ({ navigation, route }) => {
   const [modifyTitle, setModifyTitle] = useState(alarmTitle);
   const [modifyAddAlarm, setModifyAddAlarm] = useState(alarmTimer);
   const [modifyIndex, setModifyIndex] = useState(alarmIndex);
+  const [timeNow, setTimeNow] = useState(0);
+  const [pickTime, setPickTime] = useState(0);
   
   const setSelectedOption = (modifyAddAlarm, modifyIndex) => {
     setModifyAddAlarm(modifyAddAlarm)
@@ -28,18 +30,15 @@ const ModifyAlarm = ({ navigation, route }) => {
       setModifyTimer(moment(date).format("a hh:mm"))
     }
     setShow(false)
+    setPickTime(date.getTime())
+    setTimeNow(new Date().getTime())
   }
 
   const sendModifyInfo = () => {
       if(getModifyInfo) {
-          getModifyInfo(modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex)
+          getModifyInfo(modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex, timeNow, pickTime)
       }
   }
-
-  // useEffect(()=> {
-  //   setTime(time)
-  // },[])
-  //console.log(newAlarm);
 
   return (
     <View style={styles.container}>

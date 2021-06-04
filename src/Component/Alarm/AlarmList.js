@@ -78,21 +78,31 @@ const AlarmList = ({ navigation, route }) => {
     setInputs(newList);
     AsyncStorage.setItem('inputs', JSON.stringify(newList));
   };
-  console.log(inputs)
-  console.log(nextId)
 
   const delToggle = () => {
     setDelTg(!delTg)
   }
 
   const deleteCard = (index, title) => {
-    //PushNotification.removeDeliveredNotifications({id: index});
+    // inputs.map((item)=> {
+    //   if(item.cardIndex == index){
+    //     PushNotification.removeDeliveredNotifications(item);
+    //   }
+    // });
     const delCardList = inputs.filter((cards) => cards.cardIndex !== index)
     setInputs(delCardList)
     AsyncStorage.setItem('inputs', JSON.stringify(delCardList));
   }
 
-  const getModifyValue = (modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex, modifyCardIndex) => {
+  const getModifyValue = (modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex, modifyCardIndex, timeNow, pickTime) => {
+    // PushNotification.localNotificationSchedule({
+    //   id : modifyCardIndex,
+    //   channelId : "app.ppiyag" ,
+    //   date: new Date(Date.now() + (pickTime - timeNow)),
+    //   title : "PPIYAG" ,  
+    //   message : modifyTitle,  
+    //   repeatType : "day",
+    // });
     const newInputList = inputs.map((input)=> 
       input.cardIndex == modifyCardIndex ? 
         {
