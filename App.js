@@ -18,6 +18,10 @@ import MediMap from './src/Component/Map/MediMap';
 import MediModal from './src/Component/Map/MediModal';
 import MediMoreInfo from './src/Component/Map/MediMoreInfo';
 
+//DrugInfo
+import Drug from './src/Component/DrugInfo/Drug';
+import DrugMoreInfo from './src/Component/DrugInfo/DrugMoreInfo';
+
 // Alarm
 import AlarmList from './src/Component/Alarm/AlarmList';
 import AddAlarm from './src/Component/Alarm/AddAlarm';
@@ -79,6 +83,10 @@ const App = () => {
         <Stack.Screen name="MediMap" component={MediMap} />
         <Stack.Screen name="MediModal" component={MediModal} />
         <Stack.Screen name="MediMoreInfo" component={MediMoreInfo} />
+
+        <Stack.Screen name="Drug" component={Drug} />
+        <Stack.Screen name="DrugMoreInfo" component={DrugMoreInfo} options={{headerShown: false}} />
+        
         <Stack.Screen name="AlarmList" component={AlarmList} />
         <Stack.Screen name="AddAlarm" component={AddAlarm} />
         <Stack.Screen name="ModifyAlarm" component={ModifyAlarm} />
