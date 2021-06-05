@@ -8,21 +8,23 @@ const HomeScreen = ({navigation}) => {
         <Text style={styles.headerText}>삐약</Text>
       </View>
       <View style={styles.cate_box}>
-        <View style={{justifyContent: 'space-around'}}>
+        <View style={styles.topBtn}>
           <TouchableOpacity 
             style={styles.search}
             onPress={() => navigation.navigate('Drug')}>
             <Image 
-              style={{width: '100%', height: '70%', resizeMode:'contain'}}
+              style={{width: '100%', height: '60%', resizeMode:'contain'}}
               source={require('../../../asset/vitamin.png')}
             />
             <Text style={styles.imageText}>약 정보 검색</Text>
           </TouchableOpacity>
+        </View>
+        <View style={styles.bottomBtns}>
           <TouchableOpacity 
             style={styles.location} 
             onPress={() => navigation.navigate('MediMap')}>
             <Image 
-              style={{width: '100%', height: '50%', resizeMode:'contain'}}
+              style={{width: '100%', height: '60%', resizeMode:'contain'}}
               source={require('../../../asset/map.png')}
             />
             <Text style={styles.imageText}>약국 위치 검색</Text>
@@ -31,7 +33,7 @@ const HomeScreen = ({navigation}) => {
             style={styles.alarm}
             onPress={() => navigation.navigate('AlarmList')}>
             <Image 
-              style={{width: '100%', height: '50%', resizeMode:'contain'}}
+              style={{width: '100%', height: '60%', resizeMode:'contain'}}
               source={require('../../../asset/checklist.png')}
             />
             <Text style={styles.imageText}>복용 알림 설정</Text>
@@ -66,8 +68,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   search: {
-    marginBottom: 15 ,
-    height: '45%',
+    height: '100%',
     backgroundColor: 'white',
     alignItems: 'center',
     borderRadius: 12,
@@ -81,13 +82,21 @@ const styles = StyleSheet.create({
     shadowRadius: 16.00,
     elevation: 24,
   },
+  topBtn: {
+    height: 120,
+    marginBottom: 15,
+  },
+  bottomBtns: {
+    height: 150,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
   location: {
     width:'48%',
     backgroundColor: 'white',
     alignItems: 'center',
     borderRadius: 12,
     justifyContent: 'center',
-    top: 62,
     shadowColor: 'gray',
     shadowOffset: {
       width: 0,
@@ -98,13 +107,11 @@ const styles = StyleSheet.create({
     elevation: 24,
   },
   alarm: {
-    width: '48%',
+    width:'48%',
     backgroundColor: 'white',
     alignItems: 'center',
     borderRadius: 12,
     justifyContent: 'center',
-    left: 182,
-    bottom: 42,
     shadowColor: 'gray',
     shadowOffset: {
       width: 0,
