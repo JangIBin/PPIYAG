@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { SegmentedControls } from 'react-native-radio-buttons';
@@ -25,7 +25,7 @@ const AddAlarm = ({ navigation, route }) => {
     setShow(true)
   }
 
-  const setTimePicker = (event, date) => {
+  const setTimePicker = (date) => {
     if (date !== undefined) {
       setTimer(moment(date).format("a hh:mm"))
     }

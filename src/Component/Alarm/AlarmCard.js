@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import PushNotification from "react-native-push-notification";
-import AsyncStorage from '@react-native-community/async-storage';
 
-const AlarmCard = ({ navi, index, item, toggle, deleteCard, getModifyValue }) => {
+const AlarmCard = ({ index, item, toggle, deleteCard, getModifyValue }) => {
   const navigation = useNavigation();
   const [onOff, setOnOff] = useState(true);
 
@@ -31,21 +30,18 @@ const AlarmCard = ({ navi, index, item, toggle, deleteCard, getModifyValue }) =>
   return (
     <View style={styles.alarmAlign}>
       <View style={onOff ? styles.alarmView : styles.alarmViewPress}>
-        {/* <View style={styles.align}> */}
-          <View style={styles.alarmContent}>
-            <TouchableOpacity style={toggle ? styles.contentTextPress : styles.contentText} onPress={()=> {navigation.navigate( 'ModifyAlarm', { alarmInfo: item }); getModifyInfo();}}>
-              <Text style={onOff ? styles.alarmName : styles.alarmNamePress}>{item.alarmTitle}</Text> 
-              <Text style={onOff ? styles.alarmTime : styles.alarmTimePress}>{item.alarmTimer}</Text> 
-            </TouchableOpacity>
-            <TouchableOpacity style={onOff ? styles.onOffBtn : styles.onOffBtnPress} onPress={onBtnClick}>
-              <Text style={onOff ? styles.onOffText : styles.onOffTextPress}>
-                {onOff ? 'ON' : 'OFF'}
-              </Text>
-            </TouchableOpacity>
-            { toggle && <Icon style={toggle ? styles.celBtnPress : null} name="close-circle-outline" color="red" size={30} onPress={delCard} />}
+        <View style={styles.alarmContent}>
+          <TouchableOpacity style={toggle ? styles.contentTextPress : styles.contentText} onPress={()=> {navigation.navigate( 'ModifyAlarm', { alarmInfo: item }); getModifyInfo();}}>
+            <Text style={onOff ? styles.alarmName : styles.alarmNamePress}>{item.alarmTitle}</Text> 
+            <Text style={onOff ? styles.alarmTime : styles.alarmTimePress}>{item.alarmTimer}</Text> 
+          </TouchableOpacity>
+          <TouchableOpacity style={onOff ? styles.onOffBtn : styles.onOffBtnPress} onPress={onBtnClick}>
+            <Text style={onOff ? styles.onOffText : styles.onOffTextPress}>
+              {onOff ? 'ON' : 'OFF'}
+            </Text>
+          </TouchableOpacity>
+          { toggle && <Icon style={toggle ? styles.celBtnPress : null} name="close-circle-outline" color="red" size={30} onPress={delCard} />}
           </View>
-          {/* { toggle && <Icon name="close-circle-outline" color="red" size={30}></Icon>} */}
-        {/* </View> */}
       </View>
     </View>
   )

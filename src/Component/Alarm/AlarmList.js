@@ -1,15 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { SegmentedControls } from 'react-native-radio-buttons';
-import { useNavigation } from '@react-navigation/native';
 import PushNotification from "react-native-push-notification";
 import AsyncStorage from '@react-native-community/async-storage';
 import AlarmCard from './AlarmCard';
-import plus from '../../asset/plus.png';
-import ppiyagIcon from '../../asset/ppiyag_icon.png';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const AlarmList = ({ navigation, route }) => {
+const AlarmList = ({ navigation }) => {
   const time = ['아침', '점심', '저녁', '취침 전'];
   const [inputs, setInputs] = useState([]);
   const [selectOption, setSelectedOption] = useState('아침');
@@ -21,8 +18,6 @@ const AlarmList = ({ navigation, route }) => {
   const nextId = useRef(0);
 
   useEffect(() => {
-    // console.log(inputs);
-    // console.log(selectedIndex);
   },[inputs, selectedAddAlarm]);
 
   useEffect(() => {
@@ -45,7 +40,7 @@ const AlarmList = ({ navigation, route }) => {
     setSelectedAddAlarm(selectedAddAlarm)
     setSelectedIndex(selectedIndex)
     setSelectedOption(selectedAddAlarm)
-    const newInputList = inputs.filter((newInput, index) => newInput.alarmIndex == selectedIndex);
+    const newInputList = inputs.filter((newInput) => newInput.alarmIndex == selectedIndex);
     setNewList(newInputList)
   }
 
@@ -83,26 +78,19 @@ const AlarmList = ({ navigation, route }) => {
     setDelTg(!delTg)
   }
 
-  const deleteCard = (index, title) => {
-    // inputs.map((item)=> {
-    //   if(item.cardIndex == index){
-    //     PushNotification.removeDeliveredNotifications(item);
-    //   }
-    // });
+  const deleteCard = (index) => {
+    inputs.map((item)=> {
+      if(item.cardIndex == index){
+        console.log(item.cardIndex)
+        PushNotification . cancelLocalNotifications ( { id : item.cardIndex } ) ;
+      }
+    });
     const delCardList = inputs.filter((cards) => cards.cardIndex !== index)
     setInputs(delCardList)
     AsyncStorage.setItem('inputs', JSON.stringify(delCardList));
   }
 
-  const getModifyValue = (modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex, modifyCardIndex, timeNow, pickTime) => {
-    // PushNotification.localNotificationSchedule({
-    //   id : modifyCardIndex,
-    //   channelId : "app.ppiyag" ,
-    //   date: new Date(Date.now() + (pickTime - timeNow)),
-    //   title : "PPIYAG" ,  
-    //   message : modifyTitle,  
-    //   repeatType : "day",
-    // });
+  const getModifyValue = (modifyTitle, modifyTimer, modifyAddAlarm, modifyIndex, modifyCardIndex) => {
     const newInputList = inputs.map((input)=> 
       input.cardIndex == modifyCardIndex ? 
         {

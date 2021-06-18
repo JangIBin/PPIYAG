@@ -39,11 +39,10 @@ const MediMap = () => {
     
     useEffect(() => {
         requestPermission().then((result) => {
-            console.log({result});
+            console.log({result}); 
             if(result === "granted"){
                 Geolocation.getCurrentPosition(
                     (position) => {
-                        //console.log(position);
                         const {latitude, longitude} = position.coords;
                         setLocation({latitude, longitude});
                     },

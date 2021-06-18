@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import moment from "moment";
 
 const ModifyAlarm = ({ navigation, route }) => {
-  const { alarmTitle, alarmTimer, addAlarm, alarmIndex } = route.params.alarmInfo;
+  const { alarmTitle, alarmTimer, alarmIndex } = route.params.alarmInfo;
   const { getInfoValue } = route.params;
   const time = ['아침', '점심', '저녁', '취침 전'];
   const [show, setShow] = useState(false);
@@ -25,7 +25,7 @@ const ModifyAlarm = ({ navigation, route }) => {
     setShow(true)
   }
 
-  const setTimePicker = (event, date) => {
+  const setTimePicker = (date) => {
     if (date !== undefined) {
       setModifyTimer(moment(date).format("a hh:mm"))
     }
