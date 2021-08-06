@@ -27,19 +27,19 @@ const AddAlarm = ({ navigation, route }) => {
 
   const setTimePicker = (date) => {
     if (date !== undefined) {
-      setTimer(moment(date).format("a hh:mm"))
+      setTimer(moment(date.nativeEvent.timestamp).format("a hh:mm"))
     }
     setShow(false)
     setPickTime(date.getTime())
     setTimeNow(new Date().getTime())
   }
-
+  
   const sendInfo = () => {
     if(getInfoValue) {
       getInfoValue(textInput, timer, selectedAddAlarm, selectedIndex, timeNow, pickTime);
     }
   }
-
+  
   return (
     <View style={styles.container}>
       <View style={styles.inputView}>
@@ -67,10 +67,10 @@ const AddAlarm = ({ navigation, route }) => {
       <View style={styles.timerAlign}>
         <View style={styles.timerView}> 
           <Text style={styles.timerText}>{timer}</Text>
+          { show && <DateTimePicker mode="time" value={new Date()} display="spinner" onChange={setTimePicker} />}
           <TouchableOpacity style={styles.timerBtn} onPress={showTimePicker}>
             <Text style={styles.timerBtnText}>시간 설정</Text>
           </TouchableOpacity>
-          { show && <DateTimePicker mode="time" value={new Date()} display="spinner" onChange={setTimePicker} />}
         </View>
       </View>
       <View style={styles.btnView}>

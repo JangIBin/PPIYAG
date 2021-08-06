@@ -84,7 +84,7 @@ const App = () => {
         <Stack.Screen name="MediModal" component={MediModal} />
         <Stack.Screen name="MediMoreInfo" component={MediMoreInfo} />
 
-        <Stack.Screen name="Drug" component={Drug} />
+        <Stack.Screen name="Drug" component={Drug} options={{title:'Medicine'}}/>
         <Stack.Screen name="DrugMoreInfo" component={DrugMoreInfo} options={{headerShown: false}} />
         
         <Stack.Screen name="AlarmList" component={AlarmList} />

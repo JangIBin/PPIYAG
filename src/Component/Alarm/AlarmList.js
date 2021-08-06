@@ -16,6 +16,7 @@ const AlarmList = ({ navigation }) => {
   const [newList, setNewList] = useState([]);
 
   const nextId = useRef(0);
+  console.disableYellowBox = true;
 
   useEffect(() => {
   },[inputs, selectedAddAlarm]);
